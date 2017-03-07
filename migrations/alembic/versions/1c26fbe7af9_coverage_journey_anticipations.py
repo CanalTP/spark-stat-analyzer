@@ -20,9 +20,10 @@ table = "coverage_journey_anticipations"
 def upgrade():
     op.create_table('coverage_journey_anticipations',
                     sa.Column('region_id', sa.Text(), nullable=False),
-                    sa.Column('is_internal_call', sa.Boolean(), nullable=False),
+                    sa.Column('is_internal_call', sa.SmallInteger(), nullable=False),
                     sa.Column('request_date', sa.DateTime(), nullable=True),
                     sa.Column('difference', sa.Integer(), nullable=True),
+                    sa.Column('nb', sa.BigInteger(), nullable=True),
                     sa.PrimaryKeyConstraint('region_id', 'is_internal_call'),
                     sa.UniqueConstraint('region_id', 'is_internal_call', 'request_date',
                                         name='{schema}_coverage_journey_anticipations_pkey'.format(

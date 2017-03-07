@@ -233,6 +233,7 @@ class CoverageAnticipation(Base):
     is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
     request_date = Column(DateTime(), primary_key=False, nullable=True)
     difference = Column(Integer(), primary_key=False)
+    nb = Column(BigInteger(), primary_key=False)
     __table_args__ = (
         UniqueConstraint(
             'region_id', 'is_internal_call', 'request_date', name='coverage_journey_anticipations_pkey'

@@ -11,3 +11,4 @@ from analyzers.coverage_journeys import AnalyzeCoverageJourneys
 from analyzers.coverage_networks import AnalyzeCoverageNetworks
 from analyzers.coverage_lines import AnalyzeCoverageLines
 from analyzers.coverage_start_end_networks import AnalyzeCoverageStartEndNetworks
+from analyzers.coverage_journey_anticipations import AnalyzeCoverageJourneyAnticipations
