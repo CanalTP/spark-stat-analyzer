@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  database:
+    image: library/postgres:9.2
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+
+  spark-stat-analyser:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      - USER_ID=$USER_ID
+      - STAT_DATABASE_HOST=database
+      - STAT_DATABASE_USER=user
+      - STAT_DATABASE_PASSWORD=password
+    volumes:
+      - $PWD:/srv/spark-stat-analyzer
+    links:
+      - database

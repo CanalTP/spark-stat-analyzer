@@ -50,7 +50,7 @@ Note that the results are stored in the export dir
 Launching 'spark-submit' command , if you get error :
 
     zsh: no matches found
-    
+
 You can replace in command line `--master='local[3]'` by `--master=local`, or use *bash*.
 
 ## Tests
@@ -58,8 +58,9 @@ You can replace in command line `--master='local[3]'` by `--master=local`, or us
 To run tests, you can build your own image and launch them using:
 
 ```
-docker build -f Dockerfile.test -t stat-analyser:test .
-docker run -e USER_ID=$(id -u) -it -v $(pwd):/srv/spark-stat-analyzer stat-analyser:test sh -c './run_test.sh'
+USER_ID=$(id -u) docker-compose -f docker-composer.test.yml up -d
+docker wait $(docker-compose -f docker-composer.test.yml ps -q spark-stat-analyser)
+docker-compose -f docker-composer.test.yml down
 ```
 
 The docker image is also hosted on our registry under the same name:tag
