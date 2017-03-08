@@ -1,5 +1,6 @@
 from analyzers import Analyzer
 from datetime import datetime
+from analyzers.stat_utils import region_id, is_internal_call, request_date
 
 
 class AnalyzeCoverageJourneyAnticipations(Analyzer):
@@ -18,10 +19,10 @@ class AnalyzeCoverageJourneyAnticipations(Analyzer):
             lambda coverage_journey_anticipation_difference:
             (
                 (
-                    stat_dict['coverages'][0]['region_id'],
+                    region_id(stat_dict),
                     coverage_journey_anticipation_difference,
-                    1 if 'canaltp' in stat_dict['user_name'] else 0,  # is_internal_call
-                    datetime.utcfromtimestamp(stat_dict['request_date']).date(),  # request_date
+                    is_internal_call(stat_dict),
+                    request_date(stat_dict)
                 ),
                 1
             ),
