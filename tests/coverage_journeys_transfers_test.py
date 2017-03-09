@@ -42,7 +42,6 @@ def test_journeys_transfers_coverage_modes_count(spark):
                                                 end_date=date(2017, 1, 15), spark_session=spark, database=None)
 
     results = analyzer.get_data(rdd_mode=True)
-    print(results)
     assert same_list_tuple(results, expected_results)
 
 
