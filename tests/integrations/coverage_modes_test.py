@@ -1,6 +1,7 @@
 from tests.integrations.mechanism import Mechanism
 from tests.checker import same_list_tuple
 from datetime import datetime
+from includes.logger import get_logger
 
 
 class TestAnalyzeCoverageModes(Mechanism):
@@ -14,5 +15,5 @@ class TestAnalyzeCoverageModes(Mechanism):
             ('auv', 'public_transport', 'car', 'BUS', 'BUS 1', 1, datetime(2017, 1, 15, 0, 0), 2),
             ('auv', 'public_transport', '', 'commercial_mode:RER', 'RER', 1, datetime(2017, 1, 15, 0, 0), 2)
         ]
-        assert same_list_tuple(result, expected_results)
 
+        assert same_list_tuple(result, expected_results)

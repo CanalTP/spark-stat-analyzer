@@ -1,7 +1,9 @@
 FROM gettyimages/spark:2.1.0-hadoop-2.7
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install \
+    apt-get -yq install \
         libpq5 \
         zip \
         && \
@@ -14,7 +16,7 @@ WORKDIR /srv/spark-stat-analyzer
 RUN set -xe && \
     buildDeps="libpq-dev python3-dev build-essential" && \
     apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install $buildDeps && \
+    apt-get -yq install $buildDeps && \
     pip3 install -r requirements.txt && \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps && \
     rm -rf /var/lib/apt/lists/*
