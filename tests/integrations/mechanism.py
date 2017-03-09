@@ -12,7 +12,7 @@ class Mechanism(object):
         p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         (stdout, stderr) = p.communicate(timeout=15*60)
         if stderr:
-            print("Error: ", stderr)
+            get_logger().debug("Message : ", stderr)
 
     @classmethod
     @pytest.fixture(scope='function', autouse=True)
