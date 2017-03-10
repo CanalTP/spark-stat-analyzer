@@ -32,7 +32,7 @@ def analyzer_value(value):
 
 def check_and_get_path(path):
     if not os.path.exists(path):
-        raise NotImplementedError('Path not exist, you give {path}'.format(path=path))
+        raise NotImplementedError('Path does not exist, you give {path}'.format(path=path))
     return path
 
 

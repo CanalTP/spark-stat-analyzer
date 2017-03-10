@@ -1,11 +1,11 @@
 db = dict(
-    host = 'host',
-    port = '5432',
-    dbname = 'dbname',
-    user = 'user',
-    password = 'password',,
-    schema = 'stat_compiled',
-    insert_count= 1000,
+    host='host',
+    port='5432',
+    dbname='dbname',
+    user='user',
+    password='password',
+    schema='stat_compiled',
+    insert_count=1000,
 )
 
 logger = dict (
