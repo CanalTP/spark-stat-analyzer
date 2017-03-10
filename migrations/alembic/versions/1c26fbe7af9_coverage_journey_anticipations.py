@@ -1,7 +1,7 @@
 """coverage_journey_anticipations
 
 Revision ID: 1c26fbe7af9
-Revises: 1cc79244cdf
+Revises: 48218f5ebd1c
 Create Date: 2017-03-02 16:21:47.251220
 
 """
@@ -14,23 +14,20 @@ from alembic import op
 import sqlalchemy as sa
 import config
 from migrations.utils import get_create_partition_sql_func, get_drop_partition_sql_func, \
-                             get_create_trigger_sql
+    get_create_trigger_sql
 
 table = "coverage_journey_anticipations"
 schema = config.db['schema']
 
 
 def upgrade():
-    op.create_table('coverage_journey_anticipations',
+    op.create_table(table,
                     sa.Column('region_id', sa.Text(), nullable=False),
                     sa.Column('is_internal_call', sa.SmallInteger(), nullable=False),
-                    sa.Column('request_date', sa.DateTime(), nullable=True),
-                    sa.Column('difference', sa.Integer(), nullable=True),
+                    sa.Column('request_date', sa.DateTime(), nullable=False),
+                    sa.Column('difference', sa.Integer(), nullable=False),
                     sa.Column('nb', sa.BigInteger(), nullable=True),
-                    sa.PrimaryKeyConstraint('region_id', 'is_internal_call'),
-                    sa.UniqueConstraint('region_id', 'is_internal_call', 'request_date',
-                                        name='{schema}_coverage_journey_anticipations_pkey'.format(
-                                            schema=schema)),
+                    sa.PrimaryKeyConstraint('region_id', 'is_internal_call', 'request_date', 'difference'),
                     schema=schema
                     )
 

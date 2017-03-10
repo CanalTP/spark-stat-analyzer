@@ -8,7 +8,7 @@ class AnalyzeCoverageJourneyAnticipations(Analyzer):
     def get_coverage_journey_anticipations(stat_dict):
         journey_request = stat_dict.get('journey_request', None)
         if journey_request and 'requested_date_time' in journey_request:
-            yield abs(
+            yield (
                 (datetime.utcfromtimestamp(journey_request['requested_date_time']).date() -
                  datetime.utcfromtimestamp(stat_dict['request_date']).date()).days
             )

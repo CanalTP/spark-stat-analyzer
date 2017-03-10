@@ -23,13 +23,17 @@ def test_coverage_journey_anticipations(spark):
     assert len(set(files) - set(expected_files)) == 0
 
     results = analyzer.get_data(rdd_mode=True)
-    expected_results = [('transilien', 2, 0, date(2017, 1, 16), 1),
-                        ('transilien', 4, 0, date(2017, 1, 16), 1),
-                        ('transilien', 5, 1, date(2017, 1, 16), 1),
-                        ('transilien', 5, 0, date(2017, 1, 16), 2),
+    expected_results = [('transilien', 0, 0, date(2017, 1, 16), 1),
+                        ('transilien', 2, 0, date(2017, 1, 16), 1),
+                        ('transilien', 6, 0, date(2017, 1, 16), 1),
+                        ('transilien', 7, 1, date(2017, 1, 16), 1),
+                        ('fr-cen', -6, 0, date(2017, 1, 16), 1),
+                        ('transilien', 5, 0, date(2017, 1, 16), 1),
                         ('transilien', 1, 0, date(2017, 1, 16), 1),
-                        ('fr-cen', 5, 1, date(2017, 1, 16), 1),
-                        ('transilien', 3, 0, date(2017, 1, 16), 2)]
+                        ('transilien', 7, 0, date(2017, 1, 16), 1),
+                        ('fr-cen', 7, 1, date(2017, 1, 16), 1),
+                        ('transilien', 3, 0, date(2017, 1, 16), 1)]
+
     assert len(results) == len(expected_results)
     assert results == expected_results
     assert analyzer.get_log_analyzer_stats(datetime(2017, 2, 15, 15, 12)) == \

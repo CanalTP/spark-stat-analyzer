@@ -10,9 +10,9 @@ class CoverageStartEndNetworks(Base):
 
     region_id = Column(Text(), primary_key=True, nullable=False)
     start_network_id = Column(Text(), primary_key=True, nullable=False)
-    start_network_name = Column(Text(), primary_key=False, nullable=False)
+    start_network_name = Column(Text(), primary_key=False, nullable=True)
     end_network_id = Column(Text(), primary_key=True, nullable=False)
-    end_network_name = Column(Text(), primary_key=False, nullable=False)
+    end_network_name = Column(Text(), primary_key=False, nullable=True)
     request_date = Column(DateTime(), primary_key=True, nullable=False)
     is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
     nb = Column(BigInteger(), primary_key=False, nullable=False)
@@ -231,11 +231,7 @@ class CoverageAnticipation(Base):
 
     region_id = Column(Text(), primary_key=True, nullable=False)
     is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
-    request_date = Column(DateTime(), primary_key=False, nullable=True)
-    difference = Column(Integer(), primary_key=False)
-    nb = Column(BigInteger(), primary_key=False)
-    __table_args__ = (
-        UniqueConstraint(
-            'region_id', 'is_internal_call', 'request_date', name='coverage_journey_anticipations_pkey'
-        ),
-    )
+    request_date = Column(DateTime(), primary_key=True, nullable=False)
+    difference = Column(Integer(), primary_key=True, nullable=False)
+    nb = Column(BigInteger(), primary_key=False, nullable=False)
+
