@@ -1,4 +1,3 @@
 -r requirements.txt
 pytest
 findspark
-retrying==1.3.3
