@@ -2,18 +2,19 @@
 
 stage("Unit tests") {
     node('') {
-
         checkout scm
 
         wrap([$class: 'AnsiColorBuildWrapper']) {
             sh '''
-            USER_ID=$(id -u) docker-compose -f docker-composer.test.yml up -d
-            SPARK_CONTAINER=$(docker-compose -f docker-composer.test.yml ps -q spark-stat-analyser)
-            docker wait $SPARK_CONTAINER
+            SPARK_CONTAINER="spark-stat-analyser_run_$BUILD_NUMBER"
+
+            docker-compose -f docker-composer.test.yml build
+            docker-compose -f docker-composer.test.yml run --name $SPARK_CONTAINER spark-stat-analyser
             docker cp $SPARK_CONTAINER:/srv/spark-stat-analyzer/junit.xml .
-            docker-compose -f docker-composer.test.yml down
+            docker-compose -f docker-composer.test.yml down --remove-orphans
             '''
             junit 'junit.xml'
         }
     }
 }
+

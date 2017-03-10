@@ -58,11 +58,12 @@ You can replace in command line `--master='local[3]'` by `--master=local`, or us
 To run tests, you can build your own image and launch them using:
 
 ```
-USER_ID=$(id -u) docker-compose -f docker-composer.test.yml up -d
+docker-compose -f docker-composer.test.yml build
+docker-compose -f docker-composer.test.yml run spark-stat-analyser
 SPARK_CONTAINER=$(docker-compose -f docker-composer.test.yml ps -q spark-stat-analyser)
-docker wait $SPARK_CONTAINER
 docker cp $SPARK_CONTAINER:/srv/spark-stat-analyzer/junit.xml .
 docker-compose -f docker-composer.test.yml down
+
 ```
 
 The docker image is also hosted on our registry under the same name:tag

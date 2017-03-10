@@ -11,15 +11,18 @@ RUN apt-get update && \
         && \
     rm -rf /var/lib/apt/lists/*
 
-COPY . /srv/spark-stat-analyzer
+COPY requirements.txt requirements.txt
+COPY requirements-test.txt requirements-test.txt
 
 RUN set -xe && \
     buildDeps="libpq-dev python3-dev build-essential" && \
     apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install $buildDeps && \
+    apt-get -yq install $buildDeps && \
     pip3 install -r requirements-test.txt && \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps && \
     rm -rf /var/lib/apt/lists/*
+
+COPY . /srv/spark-stat-analyzer
 
 RUN cp config.py.docker config.py && rm config.py.dist && rm config.py.docker
 RUN zip -r spark-stat-analyzer.zip analyzers includes tests models.py

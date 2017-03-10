@@ -15,7 +15,6 @@ services:
       dockerfile: Dockerfile.test
     command: ["./tests/integrations/docker/wait-for-postgres.sh", "./run_test.sh"]
     environment:
-      - USER_ID=$USER_ID
       - STAT_DATABASE_HOST=database
       - STAT_DATABASE_DBNAME=statistics
       - STAT_DATABASE_USER=stat_compiled
