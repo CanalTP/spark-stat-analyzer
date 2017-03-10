@@ -27,8 +27,6 @@ def upgrade():
                         sa.Column('is_internal_call', sa.SmallInteger(), nullable=False),
                         sa.Column('nb', sa.BigInteger(), nullable=False),
                         sa.PrimaryKeyConstraint('request_date', 'region_id', 'is_internal_call'),
-                        sa.UniqueConstraint('region_id', 'request_date', 'is_internal_call',
-                                            name='{schema}_coverage_journeys_pkey'.format(schema=config.db['schema'])),
                         schema=config.db['schema']
                         )
     if not context.dialect.has_table(connection.engine, table_name='coverage_journeys_requests_params',
@@ -39,9 +37,6 @@ def upgrade():
                         sa.Column('is_internal_call', sa.SmallInteger(), nullable=False),
                         sa.Column('nb_wheelchair', sa.BigInteger(), nullable=False),
                         sa.PrimaryKeyConstraint('request_date', 'region_id', 'is_internal_call'),
-                        sa.UniqueConstraint('region_id', 'request_date', 'is_internal_call',
-                                            name='{schema}_coverage_journeys_requests_params_pkey'.
-                                            format(schema=config.db['schema'])),
                         schema=config.db['schema']
                         )
     if not context.dialect.has_table(connection.engine, table_name='coverage_journeys_transfers',
@@ -53,9 +48,6 @@ def upgrade():
                         sa.Column('nb_transfers', sa.BigInteger(), nullable=False),
                         sa.Column('nb', sa.BigInteger(), nullable=False),
                         sa.PrimaryKeyConstraint('request_date', 'region_id', 'is_internal_call', 'nb_transfers'),
-                        sa.UniqueConstraint('region_id', 'request_date', 'is_internal_call', 'nb_transfers',
-                                            name='{schema}_coverage_journeys_transfers_pkey'.
-                                            format(schema=config.db['schema'])),
                         schema=config.db['schema']
                         )
     if not context.dialect.has_table(connection.engine, table_name='coverage_modes', schema=config.db['schema']):
@@ -71,9 +63,6 @@ def upgrade():
                         sa.PrimaryKeyConstraint('request_date', 'region_id', 'type', 'mode',
                                                 'commercial_mode_id', 'commercial_mode_name',
                                                 'is_internal_call'),
-                        sa.UniqueConstraint('region_id', 'request_date', 'is_internal_call', 'type', 'mode',
-                                            'commercial_mode_id', 'commercial_mode_name',
-                                            name='{schema}_coverage_modes_pkey'.format(schema=config.db['schema'])),
                         schema=config.db['schema']
                         )
     if not context.dialect.has_table(connection.engine, table_name='coverage_networks',
@@ -87,9 +76,6 @@ def upgrade():
                         sa.Column('nb', sa.BigInteger(), nullable=False),
                         sa.PrimaryKeyConstraint('request_date', 'region_id', 'network_id', 'network_name',
                                                 'is_internal_call'),
-                        sa.UniqueConstraint('region_id', 'request_date', 'is_internal_call', 'network_id',
-                                            'network_name',
-                                            name='{schema}_coverage_networks_pkey'.format(schema=config.db['schema'])),
                         schema=config.db['schema']
                         )
     if not context.dialect.has_table(connection.engine, table_name='coverage_stop_areas',
@@ -108,10 +94,6 @@ def upgrade():
                         sa.PrimaryKeyConstraint('request_date', 'region_id', 'stop_area_id', 'stop_area_name',
                                                 'city_id', 'city_name', 'city_insee', 'department_code',
                                                 'is_internal_call', 'nb'),
-                        sa.UniqueConstraint('region_id', 'request_date', 'is_internal_call', 'stop_area_id',
-                                            'stop_area_name', 'city_id', 'city_name', 'city_insee',
-                                            'department_code',
-                                            name='{schema}_coverage_stop_areas_pkey'.format(schema=config.db['schema'])),
                         schema=config.db['schema']
                         )
     if not context.dialect.has_table(connection.engine, table_name='error_stats', schema=config.db['schema']):
@@ -127,9 +109,6 @@ def upgrade():
                         sa.Column('nb_without_journey', sa.BigInteger(), nullable=False),
                         sa.PrimaryKeyConstraint('region_id', 'api', 'user_id', 'app_name', 'is_internal_call',
                                                 'request_date', 'err_id'),
-                        sa.UniqueConstraint('region_id', 'request_date', 'is_internal_call', 'api', 'err_id',
-                                            'app_name', 'user_id',
-                                            name='{schema}_error_stats_pkey'.format(schema=config.db['schema'])),
                         schema=config.db['schema']
                         )
     if not context.dialect.has_table(connection.engine, table_name='requests_calls',
@@ -147,9 +126,6 @@ def upgrade():
                         sa.Column('object_count', sa.BigInteger(), nullable=False),
                         sa.PrimaryKeyConstraint('region_id', 'api', 'user_id', 'app_name', 'is_internal_call',
                                                 'request_date', 'end_point_id'),
-                        sa.UniqueConstraint('region_id', 'request_date', 'is_internal_call', 'api', 'app_name',
-                                            'user_id', 'end_point_id',
-                                            name='{schema}_requests_calls_pkey'.format(schema=config.db['schema'])),
                         schema=config.db['schema']
                         )
     if not context.dialect.has_table(connection.engine, table_name='token_stats', schema=config.db['schema']):
@@ -158,8 +134,6 @@ def upgrade():
                         sa.Column('request_date', sa.DateTime(), nullable=False),
                         sa.Column('nb_req', sa.BigInteger(), nullable=False),
                         sa.PrimaryKeyConstraint('token', 'request_date'),
-                        sa.UniqueConstraint('token', 'request_date',
-                                            name='{schema}_token_stats_pkey'.format(schema=config.db['schema'])),
                         schema=config.db['schema']
                         )
     if not context.dialect.has_table(connection.engine, table_name='users', schema=config.db['schema']):
@@ -168,7 +142,6 @@ def upgrade():
                         sa.Column('user_name', sa.Text(), nullable=False),
                         sa.Column('date_first_request', sa.DateTime(), nullable=False),
                         sa.PrimaryKeyConstraint('id'),
-                        sa.UniqueConstraint('id', name='{schema}_users_pkey'.format(schema=config.db['schema'])),
                         schema=config.db['schema']
                         )
 
