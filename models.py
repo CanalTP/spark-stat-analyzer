@@ -10,9 +10,9 @@ class CoverageStartEndNetworks(Base):
 
     region_id = Column(Text(), primary_key=True, nullable=False)
     start_network_id = Column(Text(), primary_key=True, nullable=False)
-    start_network_name = Column(Text(), primary_key=False, nullable=True)
+    start_network_name = Column(Text(), primary_key=False, nullable=False)
     end_network_id = Column(Text(), primary_key=True, nullable=False)
-    end_network_name = Column(Text(), primary_key=False, nullable=True)
+    end_network_name = Column(Text(), primary_key=False, nullable=False)
     request_date = Column(DateTime(), primary_key=True, nullable=False)
     is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
     nb = Column(BigInteger(), primary_key=False, nullable=False)
@@ -63,7 +63,7 @@ class CoverageJourneysTransfers(Base):
     region_id = Column(Text(), primary_key=True, nullable=False)
     is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
     nb_transfers = Column(BigInteger(), primary_key=True, nullable=False)
-    nb = Column(BigInteger(), primary_key=False)
+    nb = Column(BigInteger(), primary_key=False, nullable=False)
 
     __table_args__ = (
         UniqueConstraint(
@@ -83,7 +83,7 @@ class CoverageModes(Base):
     commercial_mode_id = Column(Text(), primary_key=True, nullable=False)
     commercial_mode_name = Column(Text(), primary_key=True, nullable=False)
     is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
-    nb = Column(BigInteger(), primary_key=False)
+    nb = Column(BigInteger(), primary_key=False, nullable=False)
 
     __table_args__ = (
         UniqueConstraint(
@@ -102,7 +102,7 @@ class CoverageNetworks(Base):
     network_id = Column(Text(), primary_key=True, nullable=False)
     network_name = Column(Text(), primary_key=True, nullable=False)
     is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
-    nb = Column(BigInteger(), primary_key=False)
+    nb = Column(BigInteger(), primary_key=False, nullable=False)
 
     __table_args__ = (
         UniqueConstraint(
@@ -124,7 +124,7 @@ class CoverageStopAreas(Base):
     city_insee = Column(Text(), primary_key=True, nullable=False)
     department_code = Column(Text(), primary_key=True, nullable=False)
     is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
-    nb = Column(BigInteger(), primary_key=True)
+    nb = Column(BigInteger(), primary_key=True, nullable=False)
 
     __table_args__ = (
         UniqueConstraint(
@@ -145,8 +145,8 @@ class ErrorStats(Base):
     is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
     request_date = Column(DateTime(), primary_key=True, nullable=False)
     err_id = Column(Text(), primary_key=True, nullable=False)
-    nb_req = Column(BigInteger(), primary_key=False)
-    nb_without_journey = Column(BigInteger(), primary_key=False)
+    nb_req = Column(BigInteger(), primary_key=False, nullable=False)
+    nb_without_journey = Column(BigInteger(), primary_key=False, nullable=False)
 
     __table_args__ = (
         UniqueConstraint(
@@ -166,9 +166,9 @@ class RequestsCalls(Base):
     is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
     request_date = Column(DateTime(), primary_key=True, nullable=False)
     end_point_id = Column(Integer(), primary_key=True, nullable=False)
-    nb = Column(BigInteger(), primary_key=False)
-    nb_without_journey = Column(BigInteger(), primary_key=False)
-    object_count = Column(BigInteger(), primary_key=False)
+    nb = Column(BigInteger(), primary_key=False, nullable=False)
+    nb_without_journey = Column(BigInteger(), primary_key=False, nullable=False)
+    object_count = Column(BigInteger(), primary_key=False, nullable=False)
 
     __table_args__ = (
         UniqueConstraint(
@@ -184,7 +184,7 @@ class TokenStats(Base):
 
     token = Column(Text(), primary_key=True, nullable=False)
     request_date = Column(DateTime(), primary_key=True, nullable=False)
-    nb_req = Column(BigInteger(), primary_key=False)
+    nb_req = Column(BigInteger(), primary_key=False, nullable=False)
 
     __table_args__ = (
         UniqueConstraint(
@@ -204,7 +204,7 @@ class CoverageLines(Base):
     network_id = Column(Text(), primary_key=True, nullable=False)
     network_name = Column(Text(), primary_key=True, nullable=False)
     is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
-    nb = Column(BigInteger(), primary_key=False)
+    nb = Column(BigInteger(), primary_key=False, nullable=False)
 
     __table_args__ = (
         UniqueConstraint(
@@ -217,8 +217,8 @@ class Users(Base):
     __tablename__ = 'users'
 
     id = Column(Text(), primary_key=True, nullable=False)
-    user_name = Column(Text(), primary_key=False, nullable=True)
-    date_first_request = Column(DateTime(), primary_key=False, nullable=True)
+    user_name = Column(Text(), primary_key=False, nullable=False)
+    date_first_request = Column(DateTime(), primary_key=False, nullable=False)
     __table_args__ = (
         UniqueConstraint(
             'id', name='users_pkey'
