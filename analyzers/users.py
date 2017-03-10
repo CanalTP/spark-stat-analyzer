@@ -5,7 +5,7 @@ from analyzers import Analyzer
 from includes.logger import get_logger
 
 
-class AnalyseUsersSql(Analyzer):
+class AnalyseUsers(Analyzer):
 
     def collect_data(self, dataframe):
         if dataframe.count():
