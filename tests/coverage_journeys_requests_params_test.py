@@ -4,7 +4,7 @@ from analyzers import AnalyzeCoverageJourneysRequestsParams
 import os
 
 pytestmark = pytest.mark.usefixtures("spark")
-path = os.getcwd() + "/tests/fixtures/coverage_journeys_request_params"
+path = os.getcwd() + "/tests/fixtures/coverage_journeys_requests_params"
 
 
 def test_no_journeys(spark):
@@ -39,8 +39,8 @@ def test_count_wheelchair_journeys(spark):
     start_date = date(2017, 1, 22)
     end_date = date(2017, 1, 22)
     expected_results = [
-        (datetime.utcfromtimestamp(1484993662).date(), u'fr-foo', 0, 2),
-        (datetime.utcfromtimestamp(1484993662).date(), u'fr-bar', 0, 1)
+        (datetime.utcfromtimestamp(1485080062).date(), u'fr-foo', 0, 2),
+        (datetime.utcfromtimestamp(1485080062).date(), u'fr-bar', 0, 1)
     ]
 
     analyzer = AnalyzeCoverageJourneysRequestsParams(storage_path=path, start_date=start_date, end_date=end_date,

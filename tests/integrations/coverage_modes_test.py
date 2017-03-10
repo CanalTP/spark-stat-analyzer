@@ -1,7 +1,6 @@
 from tests.integrations.mechanism import Mechanism
 from tests.checker import same_list_tuple
 from datetime import datetime
-from includes.logger import get_logger
 
 
 class TestAnalyzeCoverageModes(Mechanism):
