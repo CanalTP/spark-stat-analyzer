@@ -2,7 +2,7 @@ import pytest
 from datetime import date
 import os
 from includes.utils import check_and_get_path, date_format, analyzer_value, sub_iterable
-from analyzers import AnalyzeTokens, AnalyseUsersSql, AnalyzeRequest, \
+from analyzers import AnalyzeTokens, AnalyseUsers, AnalyzeRequest, \
     AnalyzeCoverageModes, AnalyzeErrors, AnalyzeCoverageStopAreas, AnalyzeCoverageJourneysTransfers, \
     AnalyzeCoverageJourneysRequestsParams, AnalyzeCoverageJourneys, AnalyzeCoverageNetworks, \
     AnalyzeCoverageStartEndNetworks
@@ -11,7 +11,7 @@ from tests.checker import same_list_tuple
 
 dict_analyzer = {
     "token_stats": AnalyzeTokens,
-    "users": AnalyseUsersSql,
+    "users": AnalyseUsers,
     "requests_calls": AnalyzeRequest,
     "error_stats": AnalyzeErrors,
     "coverage_stop_areas": AnalyzeCoverageStopAreas,

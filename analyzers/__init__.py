@@ -5,7 +5,7 @@ from analyzers.coverage_stop_areas import AnalyzeCoverageStopAreas
 from analyzers.coverage_journeys_requests_params import AnalyzeCoverageJourneysRequestsParams
 from analyzers.requests_calls import AnalyzeRequest
 from analyzers.token_stats import AnalyzeTokens
-from analyzers.users_sql import AnalyseUsersSql
+from analyzers.users import AnalyseUsers
 from analyzers.coverage_journeys_transfers import AnalyzeCoverageJourneysTransfers
 from analyzers.coverage_journeys import AnalyzeCoverageJourneys
 from analyzers.coverage_networks import AnalyzeCoverageNetworks

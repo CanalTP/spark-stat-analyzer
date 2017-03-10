@@ -1,17 +1,17 @@
 import pytest
 from datetime import date, datetime
-from analyzers import AnalyseUsersSql
+from analyzers import AnalyseUsers
 import os
 
 pytestmark = pytest.mark.usefixtures("spark")
 
 
-def test_users_sql(spark):
-    path = os.getcwd() + "/tests/fixtures/users_sql"
+def test_users(spark):
+    path = os.getcwd() + "/tests/fixtures/users"
     start_date = date(2017, 1, 15)
     end_date = date(2017, 1, 15)
 
-    analyzer = AnalyseUsersSql(storage_path=path, start_date=start_date, end_date=end_date,
+    analyzer = AnalyseUsers(storage_path=path, start_date=start_date, end_date=end_date,
                                spark_session=spark, database=None)
 
     files = analyzer.get_files_to_analyze()
@@ -33,11 +33,11 @@ def test_users_sql(spark):
         assert row == expected_results[row_id]
 
 
-def test_users_sql_empty_file(spark):
-    path = os.getcwd() + "/tests/fixtures/users_sql"
+def test_users_empty_file(spark):
+    path = os.getcwd() + "/tests/fixtures/users"
     start_date = date(2017, 1, 16)
     end_date = date(2017, 1, 16)
-    analyzer = AnalyseUsersSql(storage_path=path, start_date=start_date, end_date=end_date,
+    analyzer = AnalyseUsers(storage_path=path, start_date=start_date, end_date=end_date,
                                spark_session=spark, database=None, current_datetime=datetime(2017, 2, 15, 15, 10))
 
     files = analyzer.get_files_to_analyze()

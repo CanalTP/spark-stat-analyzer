@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from analyzers import AnalyseUsersSql, AnalyzeTokens, AnalyzeRequest,\
+from analyzers import AnalyseUsers, AnalyzeTokens, AnalyzeRequest,\
     AnalyzeErrors, AnalyzeCoverageStopAreas, AnalyzeCoverageModes, AnalyzeCoverageJourneysTransfers,\
     AnalyzeCoverageJourneysRequestsParams, AnalyzeCoverageNetworks, AnalyzeCoverageJourneys,\
     AnalyzeCoverageLines, AnalyzeCoverageStartEndNetworks, AnalyzeCoverageJourneyAnticipations
@@ -10,7 +10,7 @@ from itertools import chain, islice
 def analyzer_value(value):
     analyzers = {
         "token_stats": AnalyzeTokens,
-        "users": AnalyseUsersSql,
+        "users": AnalyseUsers,
         "requests_calls": AnalyzeRequest,
         "error_stats": AnalyzeErrors,
         "coverage_stop_areas": AnalyzeCoverageStopAreas,
