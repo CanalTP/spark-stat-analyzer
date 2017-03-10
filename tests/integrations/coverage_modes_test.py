@@ -16,3 +16,4 @@ class TestAnalyzeCoverageModes(Mechanism):
         ]
 
         assert same_list_tuple(result, expected_results)
+        assert self.partitionned_table_exists('coverage_modes_y2017m01')

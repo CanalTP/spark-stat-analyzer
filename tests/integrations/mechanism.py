@@ -30,6 +30,10 @@ class Mechanism(object):
         database.cursor.execute(query)
         database.connection.commit()
 
+    def partitionned_table_exists(self, table):
+        database.cursor.execute("select * from information_schema.tables where table_name=%s", (table,))
+        return bool(database.cursor.rowcount)
+
     def get_data(self, table_name, columns):
         return database.select_from_table(table_name=table_name, columns=columns)
 
