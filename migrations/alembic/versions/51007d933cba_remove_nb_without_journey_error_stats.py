@@ -12,11 +12,13 @@ down_revision = '22e888ef666'
 
 from alembic import op
 import sqlalchemy as sa
+import config
 
+schema = config.db['schema']
 
 def upgrade():
-    op.drop_column('error_stats', 'nb_without_journey')
+    op.drop_column('error_stats', 'nb_without_journey', schema=schema)
 
 
 def downgrade():
-    op.add_column('error_stats', sa.Column('nb_without_journey', sa.BigInteger(), nullable=True))
+    op.add_column('error_stats', sa.Column('nb_without_journey', sa.BigInteger(), nullable=True), schema=schema)
