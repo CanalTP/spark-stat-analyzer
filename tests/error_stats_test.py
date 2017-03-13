@@ -7,7 +7,7 @@ pytestmark = pytest.mark.usefixtures("spark")
 
 
 def test_error_stat(spark):
-    path = os.getcwd() + "/tests/fixtures/error_stat"
+    path = os.getcwd() + "/tests/fixtures/error_stats"
     start_date = date(2017, 1, 15)
     end_date = date(2017, 1, 15)
 

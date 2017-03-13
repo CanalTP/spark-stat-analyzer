@@ -96,7 +96,6 @@ class ErrorStats(Base):
     request_date = Column(DateTime(), primary_key=True, nullable=False)
     err_id = Column(Text(), primary_key=True, nullable=False)
     nb_req = Column(BigInteger(), primary_key=False, nullable=False)
-    nb_without_journey = Column(BigInteger(), primary_key=False, nullable=False)
 
 
 class RequestsCalls(Base):
