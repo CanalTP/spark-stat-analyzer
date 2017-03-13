@@ -16,3 +16,4 @@ class TestAnalyzeCoverageJourneysRequestsParams(Mechanism):
         ]
 
         assert same_list_tuple(result, expected_results)
+        assert self.partitionned_table_exists('coverage_journeys_requests_params_y2017m01')

@@ -19,3 +19,4 @@ class TestAnalyzeCoverageJourneyAnticipations(Mechanism):
                             ('fr-cen', 1, 7, datetime(2017, 1, 16, 0, 0), 1),
                             ('transilien', 0, 3, datetime(2017, 1, 16, 0, 0), 1)]
         assert same_list_tuple(result, expected_results)
+        assert self.partitionned_table_exists('coverage_journey_anticipations_y2017m01')
