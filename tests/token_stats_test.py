@@ -7,7 +7,7 @@ pytestmark = pytest.mark.usefixtures("spark")
 
 
 def test_token_stat(spark):
-    path = os.getcwd() + "/tests/fixtures/token_stat"
+    path = os.getcwd() + "/tests/fixtures/token_stats"
     start_date = date(2017, 1, 15)
     end_date = date(2017, 1, 16)
 
@@ -34,7 +34,7 @@ def test_token_stat(spark):
 
 
 def test_token_stat_empty_file(spark):
-    path = os.getcwd() + "/tests/fixtures/token_stat"
+    path = os.getcwd() + "/tests/fixtures/token_stats"
     start_date = date(2017, 1, 17)
     end_date = date(2017, 1, 17)
     analyzer = AnalyzeTokens(storage_path=path, start_date=start_date, end_date=end_date, spark_session=spark,
