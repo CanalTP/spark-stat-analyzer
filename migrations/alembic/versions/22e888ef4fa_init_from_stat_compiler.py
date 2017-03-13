@@ -106,7 +106,7 @@ def upgrade():
                         sa.Column('request_date', sa.DateTime(), nullable=False),
                         sa.Column('err_id', sa.Text(), nullable=False),
                         sa.Column('nb_req', sa.BigInteger(), nullable=False),
-                        sa.Column('nb_without_journey', sa.BigInteger(), nullable=False),
+                        sa.Column('nb_without_journey', sa.BigInteger(), nullable=True),
                         sa.PrimaryKeyConstraint('region_id', 'api', 'user_id', 'app_name', 'is_internal_call',
                                                 'request_date', 'err_id'),
                         schema=config.db['schema']
