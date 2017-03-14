@@ -68,3 +68,7 @@ docker-compose -f docker-composer.test.yml down
 
 The docker image is also hosted on our registry under the same name:tag
 
+License
+-------
+
+This bundle is released under the [GPL-3.0 License](LICENSE)
