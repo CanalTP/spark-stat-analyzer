@@ -35,7 +35,9 @@ class AnalyseUsers(Analyzer):
 
             if d.user_id in users_in_database:
                 self.database.update("UPDATE {schema_}.users SET user_name=%s, "
-                                     "date_first_request=LEAST(date_first_request, %s) WHERE id=%s;",
+                                     "date_first_request="
+                                     "CASE WHEN date_first_request IS NULL THEN date_first_request "
+                                     "ELSE LEAST(date_first_request, %s) END WHERE id=%s;",
                                      (d.user_name, user_date_first_request, d.user_id))
             else:
                 insert_values.append((d.user_id, d.user_name, user_date_first_request))
