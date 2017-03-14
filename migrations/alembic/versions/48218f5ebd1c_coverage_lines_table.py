@@ -12,7 +12,7 @@ down_revision = '1cc79244cdf'
 
 from alembic import op
 from migrations.utils import get_create_partition_sql_func, get_drop_partition_sql_func, \
-                             get_create_trigger_sql
+                             get_create_trigger_sql, get_drop_table_cascade_sql
 import sqlalchemy as sa
 import config
 
@@ -44,5 +44,5 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_table(table_name, schema=schema)
+    op.execute(get_drop_table_cascade_sql(schema, table))
     op.execute(get_drop_partition_sql_func(table_name))

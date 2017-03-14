@@ -14,7 +14,7 @@ from alembic import op
 import sqlalchemy as sa
 import config
 from migrations.utils import get_create_partition_sql_func, get_drop_partition_sql_func, \
-                             get_create_trigger_sql
+                             get_create_trigger_sql, get_drop_table_cascade_sql
 
 table = "coverage_start_end_networks"
 schema = config.db['schema']
@@ -41,5 +41,5 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_table(table, schema=schema)
+    op.execute(get_drop_table_cascade_sql(schema, table))
     op.execute(get_drop_partition_sql_func(table))

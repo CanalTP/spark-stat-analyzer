@@ -6,13 +6,7 @@ from math import floor
 class AnalyzeCoverageJourneysDuration(Analyzer):
     @staticmethod
     def get_durations(stat_dict):
-        journeys = stat_dict.get("journeys", None)
-        if not journeys or not len(journeys):
-            return
-        coverages = stat_dict.get("coverages", None)
-        if not coverages or not len(coverages):
-            return
-        for journey in journeys:
+        for journey in stat_dict.get("journeys", []):
             yield floor(journey.get("duration") / 60)
 
     @staticmethod
