@@ -137,9 +137,9 @@ class CoverageLines(Base):
 class Users(Base):
     __tablename__ = 'users'
 
-    id = Column(Text(), primary_key=True, nullable=False)
+    id = Column(Integer(), primary_key=True, nullable=False)
     user_name = Column(Text(), primary_key=False, nullable=False)
-    date_first_request = Column(DateTime(), primary_key=False, nullable=False)
+    date_first_request = Column(DateTime(), primary_key=False, nullable=True)
 
 
 class CoverageAnticipation(Base):
