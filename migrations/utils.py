@@ -36,3 +36,7 @@ def get_create_trigger_sql(schema, table):
             BEFORE INSERT ON {schema}.{table}
             FOR EACH ROW EXECUTE PROCEDURE {table}_insert_trigger();
         """.format(table=table, schema=schema)
+
+
+def get_drop_table_cascade_sql(schema, table):
+    return "DROP TABLE {}.{} CASCADE;".format(schema, table)

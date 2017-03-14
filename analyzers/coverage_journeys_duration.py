@@ -21,8 +21,8 @@ class AnalyzeCoverageJourneysDuration(Analyzer):
             lambda duration:
             (
                 (
-                    region_id(stat_dict),
                     request_date(stat_dict),
+                    region_id(stat_dict),
                     is_internal_call(stat_dict),
                     duration,
                 ),
@@ -34,7 +34,7 @@ class AnalyzeCoverageJourneysDuration(Analyzer):
     def truncate_and_insert(self, data):
         self.database.insert(
             "coverage_journeys_duration",
-            ("region_id", "request_date", "is_internal_call", "duration", "nb"),
+            ("request_date", "region_id", "is_internal_call", "duration", "nb"),
             data,
             self.start_date,
             self.end_date
