@@ -18,19 +18,20 @@ if __name__ == "__main__":
     args = parser.parse_args()
     status = 'OK'
     try:
+        spark_session = SparkSession.builder.appName(__file__).getOrCreate()
+        sc = spark_session.sparkContext
+        sc.setLogLevel(config.logger.get("level", "WARN"))
+
         database = Database(dbname=config.db["dbname"], user=config.db["user"],
                             password=config.db["password"], schema=config.db["schema"],
                             host=config.db['host'], port=config.db['port'],
                             insert_count=config.db['insert_count'],
-                            auto_connect=False)
-
-        logger.init_logger(config.logger.get("level", ""))
-        spark_session = SparkSession.builder.appName(__file__).getOrCreate()
+                            auto_connect=False, logger=logger.get_logger(spark_session.sparkContext))
 
         analyzer = args.analyzer(args.input, args.start_date, args.end_date, spark_session, database)
         analyzer.launch()
     except Exception as e:
-        logger.get_logger().critical("Error: {msg}".format(msg=str(e)))
+        logger.get_logger(sc).error("Error: {msg}".format(msg=str(e)))
         status = 'KO'
     finally:
         analyzer.terminate(datetime.now(), status)

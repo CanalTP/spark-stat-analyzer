@@ -27,5 +27,6 @@ COPY . /srv/spark-stat-analyzer
 RUN cp config.py.docker config.py && rm config.py.dist && rm config.py.docker
 RUN zip -r spark-stat-analyzer.zip analyzers includes tests models.py
 RUN cp /usr/spark-2.1.0/conf/log4j.properties.template /usr/spark-2.1.0/conf/log4j.properties
+RUN sed -i 's/INFO, console/ERROR, console/g' /usr/spark-2.1.0/conf/log4j.properties
 
 CMD ["./run_test.sh"]

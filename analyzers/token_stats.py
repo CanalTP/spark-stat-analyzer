@@ -13,7 +13,7 @@ class AnalyzeTokens(Analyzer):
             # tokenRow attributes can be accessed by .token, .request_date_trunc but not .count which returns count method of tuple
             return [(tokenRow['token'], tokenRow['request_date_trunc'], tokenRow['count']) for tokenRow in tokenStats]
         else:
-            get_logger().debug("Empty data frame.")
+            get_logger(self.spark_session.sparkContext).debug("Empty data frame.")
             return []
 
     def truncate_and_insert(self, data):

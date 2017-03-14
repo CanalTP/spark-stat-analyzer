@@ -23,7 +23,7 @@ class AnalyseUsers(Analyzer):
 
             return new_users.collect()
         else:
-            get_logger().debug("Empty data frame.")
+            get_logger(self.spark_session.sparkContext).debug("Empty data frame.")
             return []
 
     def insert_or_update(self, data):
