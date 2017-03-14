@@ -1,11 +1,11 @@
 {"coverages":[{"region_id":"fr-foo"}],"request_date":1485011200,"user_name":"foo","journeys":[]}
 {"coverages":[{"region_id":"fr-foo"}],"request_date":1485011200,"user_name":"foo"}
-{"coverages":[{"region_id":"fr-foo"}],"request_date":1485011200,"user_name":"foo","journeys":["journeys_1"]}
-{"coverages":[{"region_id":"fr-foo"}],"request_date":1485011200,"user_name":"foo","journeys":["journeys_1", "journeys_2"]}
-{"coverages":[{"region_id":"fr-foo"}],"request_date":1485011200,"user_name":"foo","journeys":["journeys_1", "journeys_2"]}
-{"coverages":[{"region_id":"fr-foo"}],"request_date":1485011200,"user_name":"foo","journeys":["journeys_1", "journeys_2"]}
-{"coverages":[{"region_id":"fr-foo"}],"request_date":1485011200,"user_name":"foo","journeys":["journeys_1", "journeys_2"]}
-{"coverages":[{"region_id":"fr-bar"}],"request_date":1485011200,"user_name":"foo","journeys":["journeys_1", "journeys_2"]}
-{"coverages":[{"region_id":"fr-bar"}],"request_date":1485011200,"user_name":"foo","journeys":["journeys_1", "journeys_2"]}
-{"coverages":[{"region_id":"fr-bar"}],"request_date":1485011200,"user_name":"foo","journeys":["journeys_1", "journeys_2"]}
-{"coverages":[{"region_id":"fr-bar"}],"request_date":1485011200,"user_name":"foo","journeys":["journeys_1", "journeys_2"]}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1485011200,"user_name":"foo","journeys":[{"sections":[{"type":"public_transport"},{"type":"transfer"}]}]}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1485011200,"user_name":"foo","journeys":[{"sections":[{"type":"on_demand_transport"},{"type":"on_demand_transport"}]}, {"sections":[{"type":"public_transport"},{"type":"transfer"}]}]}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1485011200,"user_name":"foo","journeys":[{"sections":[{"type":"on_demand_transport"},{"type":"transfer"}]}, {"sections":[{"type":"public_transport"},{"type":"transfer"}]}]}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1485011200,"user_name":"foo","journeys":[{"sections":[{"type":"on_demand_transport"},{"type":"transfer"}]}, {"sections":[{"type":"public_transport"},{"type":"transfer"}]}]}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1485011200,"user_name":"foo","journeys":[{"sections":[{"type":"on_demand_transport"},{"type":"transfer"}]}, {"sections":[{"type":"public_transport"},{"type":"transfer"}]}]}
+{"coverages":[{"region_id":"fr-bar"}],"request_date":1485011200,"user_name":"foo","journeys":[{"sections":[{"type":"waiting"},{"type":"transfer"}]}, {"sections":[{"type":"public_transport"},{"type":"transfer"}]}]}
+{"coverages":[{"region_id":"fr-bar"}],"request_date":1485011200,"user_name":"foo","journeys":[{"sections":[{"type":"waiting"},{"type":"transfer"}]}, {"sections":[{"type":"public_transport"},{"type":"transfer"}]}]}
+{"coverages":[{"region_id":"fr-bar"}],"request_date":1485011200,"user_name":"foo","journeys":[{"sections":[{"type":"waiting"},{"type":"transfer"}]}, {"sections":[{"type":"public_transport"},{"type":"transfer"}]}]}
+{"coverages":[{"region_id":"fr-bar"}],"request_date":1485011200,"user_name":"foo","journeys":[{"sections":[{"type":"waiting"},{"type":"transfer"}]}, {"sections":[{"type":"on_demand_transport"},{"type":"transfer"}]}]}

@@ -1,11 +1,11 @@
 from abc import abstractmethod, ABCMeta
+from operator import add
 from glob import glob
 from datetime import timedelta, datetime
 import math
 from includes.logger import get_basic_logger
 import json
 import os
-
 
 class Analyzer(object):
     __metaclass__ = ABCMeta
@@ -31,11 +31,15 @@ class Analyzer(object):
     def get_tuples_from_stat_dict(stat_dict):
         pass
 
+    @staticmethod
+    def get_logic_to_reduce_by_key(a, b):
+        return add(a, b)
+
     def collect_data(self, dataframe):
         data = dataframe.flatMap(
             self.get_tuples_from_stat_dict
         ).reduceByKey(
-            lambda a, b: a + b
+            self.get_logic_to_reduce_by_key
         ).collect()
         return [tuple(list(key_tuple) + [nb]) for (key_tuple, nb) in data]
 
