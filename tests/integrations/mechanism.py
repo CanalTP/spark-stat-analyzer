@@ -1,16 +1,17 @@
 import pytest
 import subprocess
 import os
-from includes.logger import get_logger
 from models import Base
 import config
 from includes.database import Database
+from includes import logger
 
 current_path = os.getcwd()
 database = Database(dbname=config.db["dbname"], user=config.db["user"],
                     password=config.db["password"], schema=config.db["schema"],
                     host=config.db['host'], port=config.db['port'],
-                    insert_count=config.db['insert_count'])
+                    insert_count=config.db['insert_count'],
+                    info_logger=logger.get_basic_logger(), error_logger=logger.get_basic_logger())
 
 class Mechanism(object):
     @classmethod

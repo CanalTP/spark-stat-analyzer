@@ -2,7 +2,6 @@ from datetime import datetime
 from pyspark.sql.window import Window
 from pyspark.sql.functions import first, desc
 from analyzers import Analyzer
-from includes.logger import get_logger
 
 
 class AnalyseUsers(Analyzer):
@@ -23,7 +22,6 @@ class AnalyseUsers(Analyzer):
 
             return new_users.collect()
         else:
-            get_logger(self.spark_session.sparkContext).debug("Empty data frame.")
             return []
 
     def insert_or_update(self, data):

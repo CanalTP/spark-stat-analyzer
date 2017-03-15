@@ -17,21 +17,28 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     status = 'OK'
+    spark_session = SparkSession.builder.appName(__file__).getOrCreate()
+    sc = spark_session.sparkContext
     try:
-        spark_session = SparkSession.builder.appName(__file__).getOrCreate()
-        sc = spark_session.sparkContext
-        sc.setLogLevel(config.logger.get("level", "WARN"))
+        sc.setLogLevel(config.logger.get("spark_level", "ERROR"))
+        logger.init_basic_logger(config.logger.get("level", ""))
 
         database = Database(dbname=config.db["dbname"], user=config.db["user"],
                             password=config.db["password"], schema=config.db["schema"],
                             host=config.db['host'], port=config.db['port'],
                             insert_count=config.db['insert_count'],
-                            auto_connect=False, logger=logger.get_logger(spark_session.sparkContext))
+                            auto_connect=False,
+                            error_logger=logger.get_spark_logger(spark_session.sparkContext),
+                            info_logger=logger.get_basic_logger())
 
         analyzer = args.analyzer(args.input, args.start_date, args.end_date, spark_session, database)
-        analyzer.launch()
+        try:
+            analyzer.launch()
+        except Exception as e:
+            logger.get_spark_logger(sc).error("Error: {msg}".format(msg=str(e)))
+            status = 'KO'
+        finally:
+            analyzer.terminate(datetime.now(), status)
     except Exception as e:
-        logger.get_logger(sc).error("Error: {msg}".format(msg=str(e)))
-        status = 'KO'
-    finally:
-        analyzer.terminate(datetime.now(), status)
+        logger.get_spark_logger(sc).error("Error: {msg}".format(msg=str(e)))
+

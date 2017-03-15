@@ -9,5 +9,6 @@ db = dict(
 )
 
 logger = dict (
-    level = 'WARNING'
+    level = 'INFO',
+    spark_level='WARN'
 )

@@ -16,7 +16,7 @@ class TestAnalyzeUsers(Mechanism):
             (45, 'Paul', datetime(2017, 1, 17, 2, 56, 10))
         ]
 
-        assert same_list_tuple(result, expected_results)
+        assert result == expected_results
 
     def test_users_no_update_on_null_date(self):
         self.launch_migration_only()
@@ -27,4 +27,4 @@ class TestAnalyzeUsers(Mechanism):
                             (15, 'Bobby new name', datetime(2017, 1, 15, 8, 12, 10)),
                             (666, 'Billy', datetime(2017, 1, 15, 8, 12, 10))]
 
-        assert same_list_tuple(result, expected_results)
+        assert result == expected_results

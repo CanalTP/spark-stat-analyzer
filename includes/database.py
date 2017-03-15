@@ -1,29 +1,23 @@
 import psycopg2
 from includes.utils import sub_iterable
-from includes.logger import get_logger
 
 
 class Database(object):
-    def __init__(self, dbname, user, password, host="localhost", port=5432, auto_connect=True, logger=None, **kwargs):
+    def __init__(self, dbname, user, password, host="localhost", port=5432, auto_connect=True, info_logger=None, error_logger=None, **kwargs):
         self.connection_string = "host='{host}' port='{port}' dbname='{dbname}' user='{user}' password='{password}'". \
             format(host=host, port=port, dbname=dbname, user=user, password=password)
         self.schema = kwargs.get("schema", "stat_compiled")
         self.insert_count = kwargs.get("insert_count", 1000)
-        self.logger = logger
+        self.info_logger = info_logger
+        self.error_logger = error_logger
         self.connection = None
         self.cursor = None
         if auto_connect:
             try:
                 self.connect()
             except psycopg2.OperationalError as e:
-                self.logger.error('Cannot connect database, error: {msg}'.format(msg=str(e)))
+                self.error_logger.error('Cannot connect database, error: {msg}'.format(msg=str(e)))
                 raise
-
-    def safe_log_info(self, message):
-        if self.logger:
-            self.logger.info(message)
-        else:
-            print(message)
 
     def connect(self):
         if not self.cursor:
@@ -56,11 +50,11 @@ class Database(object):
             self.cursor.execute(query.format(schema_=self.schema), values)
             self.connection.commit()
         except psycopg2.Error as e:
-            self.logger.error("Error in update function: {msg}".format(msg=str(e)))
+            self.error_logger.error("Error in update function: {msg}".format(msg=str(e)))
             self.connection.rollback()
             raise
         except TypeError as e:
-            self.logger.error("Error in update function: {msg}".format(msg=str(e)))
+            self.error_logger.error("Error in update function: {msg}".format(msg=str(e)))
             self.connection.rollback()
             raise
 
@@ -77,17 +71,17 @@ class Database(object):
             for records in sub_iterable(data, self.insert_count):
                 if len(records):
                     count += len(records)
-                    self.safe_log_info("Insert into {table} {count}/{size}".format(table=table_name,
+                    self.info_logger.info("Insert into {table} {count}/{size}".format(table=table_name,
                                                                                   count=count,
                                                                                   size=size))
                     insert_string = self.format_insert_query(table_name, columns, records)
                     self.cursor.execute(insert_string, records)
             self.connection.commit()
         except psycopg2.Error as e:
-            self.logger.error("Error in insert function: {msg}".format(msg=str(e)))
+            self.error_logger.error("Error in insert function: {msg}".format(msg=str(e)))
             self.connection.rollback()
             raise
         except TypeError as e:
-            self.logger.error("Error in insert function: {msg}".format(msg=str(e)))
+            self.error_logger.error("Error in insert function: {msg}".format(msg=str(e)))
             self.connection.rollback()
             raise
