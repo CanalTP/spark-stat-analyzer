@@ -2,7 +2,7 @@ from abc import abstractmethod, ABCMeta
 from glob import glob
 from datetime import timedelta, datetime
 import math
-from includes.logger import get_spark_logger
+from includes.logger import get_basic_logger
 import json
 import os
 
@@ -71,4 +71,4 @@ class Analyzer(object):
 
     def terminate(self, current_datetime, status='OK'):
         self.spark_session.sparkContext.stop()
-        get_spark_logger(self.spark_session.sparkContext).info(self.get_log_analyzer_stats(current_datetime, status))
+        get_basic_logger().info(self.get_log_analyzer_stats(current_datetime, status))
