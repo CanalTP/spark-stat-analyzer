@@ -138,9 +138,9 @@ def upgrade():
                         )
     if not context.dialect.has_table(connection.engine, table_name='users', schema=config.db['schema']):
         op.create_table('users',
-                        sa.Column('id', sa.Text(), nullable=False),
+                        sa.Column('id', sa.Integer(), nullable=False),
                         sa.Column('user_name', sa.Text(), nullable=False),
-                        sa.Column('date_first_request', sa.DateTime(), nullable=False),
+                        sa.Column('date_first_request', sa.DateTime(), nullable=True),
                         sa.PrimaryKeyConstraint('id'),
                         schema=config.db['schema']
                         )

@@ -1,7 +1,6 @@
 import logging
 
-
-def init_logger(level):
+def init_basic_logger(level):
     levels = {
         "DEBUG": logging.DEBUG,
         "INFO": logging.INFO,
@@ -19,5 +18,8 @@ def init_logger(level):
     logger.addHandler(steam_handler)
 
 
-def get_logger():
+def get_basic_logger():
     return logging.getLogger("spark-stat-analyzer")
+
+def get_spark_logger(sparkContext):
+    return sparkContext._jvm.org.apache.log4j.LogManager.getLogger("spark-stat-analyzer")

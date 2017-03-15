@@ -12,4 +12,5 @@ db = dict(
 
 logger = dict (
     level = os.getenv('STAT_LOGGER_LEVEL', 'INFO'),
+    spark_level = os.getenv('STAT_LOGGER_LEVEL', 'ERROR'),
 )
