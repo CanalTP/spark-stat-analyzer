@@ -10,8 +10,8 @@ def test_count_journeys(spark):
     start_date = date(2017, 1, 20)
     end_date = date(2017, 1, 20)
     expected_results = [
-        (datetime.utcfromtimestamp(1484993662).date(), u'fr-foo', 0, 9),
-        (datetime.utcfromtimestamp(1484993662).date(), u'fr-bar', 0, 8)
+        (datetime.utcfromtimestamp(1484993662).date(), u'fr-foo', 0, (9, 4)),
+        (datetime.utcfromtimestamp(1484993662).date(), u'fr-bar', 0, (8, 1))
     ]
 
     analyzer = AnalyzeCoverageJourneys(storage_path=path,
