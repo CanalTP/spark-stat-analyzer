@@ -1,0 +1,5 @@
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1489496455,"user_name":"foo","journeys":[{"duration": 45}]}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1489496455,"user_name":"foo","journeys":[{"duration": 60}]}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1489496455,"user_name":"foo","journeys":[{"duration": 75}]}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1489496455,"user_name":"foo","journeys":[{"duration": 175}]}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1489496455,"user_name":"foo","journeys":[{"duration": 1335}]}

@@ -150,3 +150,13 @@ class CoverageAnticipation(Base):
     difference = Column(Integer(), primary_key=True, nullable=False)
     nb = Column(BigInteger(), primary_key=False, nullable=False)
 
+
+class CoverageJourneysDuration(Base):
+    __tablename__ = 'coverage_journeys_duration'
+
+    region_id = Column(Text(), primary_key=True, nullable=False)
+    is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
+    request_date = Column(DateTime(), primary_key=True, nullable=False)
+    duration = Column(Integer(), primary_key=True, nullable=False)
+    nb = Column(BigInteger(), primary_key=False, nullable=False)
+
