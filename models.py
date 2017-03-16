@@ -181,4 +181,3 @@ class CoverageJourneysDepartments(Base):
     departure_department_code = Column(Text(), primary_key=True, nullable=False)
     arrival_department_code = Column(Text(), primary_key=True, nullable=False)
     nb_req = Column(BigInteger(), primary_key=False, nullable=False)
-

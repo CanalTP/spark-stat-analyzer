@@ -12,9 +12,13 @@ class TestAnalyzeCoverageJourneysDepartments(Mechanism):
                                         'departure_department_code', 'arrival_department_code', 'nb_req'])
 
         expected_results = [
+            (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '94', '', 2),
             (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '94', '75', 1),
+            (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '', '75', 1),
+            (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '', '', 3),
             (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '75', '29', 2),
-            (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '75', '75', 1)]
+            (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '75', '75', 1)
+        ]
 
         assert same_list_tuple(result, expected_results)
         assert self.partitionned_table_exists('coverage_journeys_departments_y2017m03')

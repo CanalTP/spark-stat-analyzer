@@ -14,6 +14,9 @@ def test_count_journeys(spark):
         (datetime.utcfromtimestamp(1489670672).date(), u'fr-foo', 0, "75", "29", 2),
         (datetime.utcfromtimestamp(1489670672).date(), u'fr-foo', 0, "75", "75", 1),
         (datetime.utcfromtimestamp(1489670672).date(), u'fr-foo', 0, "94", "75", 1),
+        (datetime.utcfromtimestamp(1489670672).date(), u'fr-foo', 0, "94", "", 2),
+        (datetime.utcfromtimestamp(1489670672).date(), u'fr-foo', 0, "", "75", 1),
+        (datetime.utcfromtimestamp(1489670672).date(), u'fr-foo', 0, "", "", 3),
     ]
 
     analyzer = AnalyzeCoverageJourneysDepartments(storage_path=path,
