@@ -21,6 +21,7 @@ def analyzer_value(value):
         "coverage_journey_anticipations": AnalyzeCoverageJourneyAnticipations,
         "coverage_journeys_duration": AnalyzeCoverageJourneysDuration,
         "coverage_journeys_networks_transfers": AnalyzeCoverageJourneysNetworksTransfers,
+	"coverage_journeys_departments": AnalyzeCoverageJourneysDepartments,
     }
     lower_value = value.lower()
     if lower_value not in analyzers:

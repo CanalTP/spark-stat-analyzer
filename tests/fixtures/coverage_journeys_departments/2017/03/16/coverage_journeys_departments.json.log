@@ -1,0 +1,5 @@
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1489670672,"user_name":"foo","journey_request":{"departure_insee":"75012","arrival_insee":"29200"}}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1489670672,"user_name":"foo","journey_request":{"departure_insee":"75000","arrival_insee":"29200"}}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1489670672,"user_name":"foo"}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1489670672,"user_name":"foo","journey_request":{"departure_insee":"75012","arrival_insee":"75010"}}
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1489670672,"user_name":"foo","journey_request":{"departure_insee":"94000","arrival_insee":"75012"}}
