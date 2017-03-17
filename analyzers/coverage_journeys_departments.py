@@ -6,20 +6,17 @@ class AnalyzeCoverageJourneysDepartments(Analyzer):
     @staticmethod
     def get_departments(stat_dict):
         journey_request = stat_dict.get("journey_request", None)
-        departure_code = ""
-        arrival_code = ""
 
         if journey_request:
-            if 'departure_insee' in journey_request or 'arrival_insee' in journey_request:
-                departure_insee = journey_request.get("departure_insee", "")
-                arrival_insee = journey_request.get("arrival_insee", "")
-                departure_code = departure_insee[0:2] if departure_insee else departure_insee
-                arrival_code = arrival_insee[0:2] if arrival_insee else arrival_insee
+            departure_insee = journey_request.get("departure_insee", "")
+            arrival_insee = journey_request.get("arrival_insee", "")
+            departure_code = departure_insee[0:2] if departure_insee else departure_insee
+            arrival_code = arrival_insee[0:2] if arrival_insee else arrival_insee
 
-        yield {
-            "departure": departure_code,
-            "arrival": arrival_code,
-        }
+            yield {
+                "departure": departure_code,
+                "arrival": arrival_code,
+            }
 
     @staticmethod
     def get_tuples_from_stat_dict(stat_dict):
