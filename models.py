@@ -160,3 +160,24 @@ class CoverageJourneysDuration(Base):
     duration = Column(Integer(), primary_key=True, nullable=False)
     nb = Column(BigInteger(), primary_key=False, nullable=False)
 
+
+class CoverageJourneysNetworksTransfers(Base):
+    __tablename__ = 'coverage_journeys_networks_transfers'
+
+    request_date = Column(DateTime(), primary_key=True, nullable=False)
+    region_id = Column(Text(), primary_key=True, nullable=False)
+    is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
+    nb_transfers = Column(Integer(), primary_key=True, nullable=False)
+    nb_networks = Column(Integer(), primary_key=True, nullable=False)
+    nb_journeys = Column(BigInteger(), primary_key=False, nullable=False)
+
+
+class CoverageJourneysDepartments(Base):
+    __tablename__ = 'coverage_journeys_departments'
+
+    request_date = Column(DateTime(), primary_key=True, nullable=False)
+    region_id = Column(Text(), primary_key=True, nullable=False)
+    is_internal_call = Column(SmallInteger(), primary_key=True, nullable=False)
+    departure_department_code = Column(Text(), primary_key=True, nullable=False)
+    arrival_department_code = Column(Text(), primary_key=True, nullable=False)
+    nb_req = Column(BigInteger(), primary_key=False, nullable=False)
