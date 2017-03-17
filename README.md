@@ -24,26 +24,14 @@ Create config.py file from template config.py.dist and adapt them
 
 ## Usage
 
-* For requests_calls consolidation
 ```
-<path/to/spark>/bin/spark-submit  --conf spark.ui.showConsoleProgress=true --master='local[3]' manage.py -a <analyzer> -i <your_export_directory> -s <start_date> -e <end_date>
-```
-
-where:
-* analyzer: analyzer name, possible value : token_stats, users, requests_calls, error_stats, coverage_stop_areas, coverage_modes, coverage_journeys_transfers or coverage_journeys_requests_params
-
-* start_date and end_date is in YYYY-MM-DD format
-
-* For coverage_journeys consolidation
-```
-<path/to/spark>/bin/spark-submit  --conf spark.ui.showConsoleProgress=true --master='local[3]' coverage_journeys.py <your_export_directory> <start_date> <end_date>
+SPARK_BIN=/path/to/spark/bin/ MASTER_OPTION=local[3] TABLE=<your_table> CONTAINER_STORE_PATH=/absolute/path/to/data START_DATE=<start_date> END_DATE=<end_date> ./run_analyzer.sh
 ```
 
 where:
+* your_table: analyzer/table name, possible value : see includes/utils.py:9
+
 * start_date and end_date is in YYYY-MM-DD format
-
-Note that the results are stored in the export dir
-
 
 ### Shell ZSH users
 
@@ -60,10 +48,7 @@ To run tests, you can build your own image and launch them using:
 ```
 docker-compose -f docker-composer.test.yml build
 docker-compose -f docker-composer.test.yml run spark-stat-analyser
-SPARK_CONTAINER=$(docker-compose -f docker-composer.test.yml ps -q spark-stat-analyser)
-docker cp $SPARK_CONTAINER:/srv/spark-stat-analyzer/junit.xml .
-docker-compose -f docker-composer.test.yml down
-
+docker-compose -f docker-composer.test.yml down --remove-orphans
 ```
 
 The docker image is also hosted on our registry under the same name:tag
