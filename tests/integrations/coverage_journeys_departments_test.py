@@ -15,7 +15,7 @@ class TestAnalyzeCoverageJourneysDepartments(Mechanism):
             (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '94', '', 2),
             (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '94', '75', 1),
             (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '', '75', 1),
-            (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '', '', 3),
+            (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '', '', 2),
             (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '75', '29', 2),
             (datetime(2017, 3, 16, 0, 0), 'fr-foo', 0, '75', '75', 1)
         ]

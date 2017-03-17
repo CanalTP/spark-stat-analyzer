@@ -5,9 +5,8 @@ from analyzers.stat_utils import region_id, is_internal_call, request_date
 class AnalyzeCoverageJourneysDepartments(Analyzer):
     @staticmethod
     def get_departments(stat_dict):
-        journey_request = stat_dict.get("journey_request", None)
-
-        if journey_request:
+        if "journey_request" in stat_dict:
+            journey_request = stat_dict.get("journey_request")
             departure_insee = journey_request.get("departure_insee", "")
             arrival_insee = journey_request.get("arrival_insee", "")
             departure_code = departure_insee[0:2] if departure_insee else departure_insee
