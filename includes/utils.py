@@ -20,6 +20,7 @@ def analyzer_value(value):
         "coverage_start_end_networks": AnalyzeCoverageStartEndNetworks,
         "coverage_journey_anticipations": AnalyzeCoverageJourneyAnticipations,
         "coverage_journeys_duration": AnalyzeCoverageJourneysDuration,
+        "coverage_journeys_networks_transfers": AnalyzeCoverageJourneysNetworksTransfers,
     }
     lower_value = value.lower()
     if lower_value not in analyzers:
