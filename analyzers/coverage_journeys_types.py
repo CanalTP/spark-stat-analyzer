@@ -17,25 +17,26 @@ class AnalyzeCoverageJourneysTypes(Analyzer):
         types = {}
         available_keys = ['from', 'to']
 
-        for parameter in stat_dict.get('parameters', []):
-            if parameter['key'] in available_keys:
-                types.setdefault(
-                    parameter['key'],
-                    AnalyzeCoverageJourneysTypes.get_type_from_parameter_value(parameter['value'])
-                )
-            if len(types) == 2:
-                result.append(
-                    (
-                        (
-                            request_date(stat_dict),
-                            region_id(stat_dict),
-                            types['from'],
-                            types['to']
-                        ),
-                        1
+        if "journey_request" in stat_dict:
+            for parameter in stat_dict.get('parameters', []):
+                if parameter['key'] in available_keys:
+                    types.setdefault(
+                        parameter['key'],
+                        AnalyzeCoverageJourneysTypes.get_type_from_parameter_value(parameter['value'])
                     )
-                )
-                break
+                if len(types) == 2:
+                    result.append(
+                        (
+                            (
+                                request_date(stat_dict),
+                                region_id(stat_dict),
+                                types['from'],
+                                types['to']
+                            ),
+                            1
+                        )
+                    )
+                    break
 
         return result
 
