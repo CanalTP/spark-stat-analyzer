@@ -15,6 +15,7 @@ def analyzer_value(value):
         "coverage_journeys_transfers": AnalyzeCoverageJourneysTransfers,
         "coverage_journeys_requests_params": AnalyzeCoverageJourneysRequestsParams,
         "coverage_journeys": AnalyzeCoverageJourneys,
+        "coverage_journeys_types": AnalyzeCoverageJourneysTypes,
         "coverage_networks": AnalyzeCoverageNetworks,
         "coverage_lines": AnalyzeCoverageLines,
         "coverage_start_end_networks": AnalyzeCoverageStartEndNetworks,
