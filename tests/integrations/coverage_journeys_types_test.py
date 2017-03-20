@@ -3,9 +3,9 @@ from tests.checker import same_list_tuple
 from datetime import datetime
 
 
-class TestAnalyzeCoverageJourneys(Mechanism):
+class TestAnalyzeCoverageJourneysTypes(Mechanism):
 
-    def test_coverage_journeys(self):
+    def test_coverage_journeys_types(self):
         self.launch(analyzer='coverage_journeys_types', start_date='2017-01-20', end_date='2017-01-20')
         result = self.get_data(table_name='coverage_journeys_types',
                                columns=['request_date', 'region_id', 'from_type', 'to_type', 'nb'])
