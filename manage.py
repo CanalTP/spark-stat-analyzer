@@ -1,4 +1,5 @@
 from includes.database import Database
+import sys, os
 import config
 import argparse
 from pyspark.sql import SparkSession
@@ -17,6 +18,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     status = 'OK'
+    exit_code = os.EX_OK
     spark_session = SparkSession.builder.appName(__file__).getOrCreate()
     sc = spark_session.sparkContext
     try:
@@ -37,8 +39,11 @@ if __name__ == "__main__":
         except Exception as e:
             logger.get_spark_logger(sc).error("Error: {msg}".format(msg=str(e)))
             status = 'KO'
+            exit_code = os.EX_SOFTWARE
         finally:
             analyzer.terminate(datetime.now(), status)
     except Exception as e:
         logger.get_spark_logger(sc).error("Error: {msg}".format(msg=str(e)))
+        exit_code =  os.EX_CONFIG
 
+    sys.exit(exit_code)
