@@ -2,7 +2,6 @@ import pytest
 import os
 from datetime import date, datetime
 from analyzers import AnalyzeCoverageJourneysTransfers
-from tests.checker import same_list_tuple
 
 pytestmark = pytest.mark.usefixtures("spark")
 path = os.getcwd() + "/tests/fixtures/coverage_journeys_transfers"
@@ -42,7 +41,7 @@ def test_journeys_transfers_coverage_modes_count(spark):
                                                 end_date=date(2017, 1, 15), spark_session=spark, database=None)
 
     results = analyzer.get_data(rdd_mode=True)
-    assert same_list_tuple(results, expected_results)
+    assert results == expected_results
 
 
 def test_journeys_transfers_coverage_modes_without_journey(spark):

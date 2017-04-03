@@ -1,5 +1,4 @@
 from tests.integrations.mechanism import Mechanism
-from tests.checker import same_list_tuple
 from datetime import datetime
 
 
@@ -19,5 +18,5 @@ class TestAnalyzeRequestsCalls(Mechanism):
             ('region:1', 'v1.stop_areas.collection', 51, '', 0, datetime(2017, 1, 1, 0, 0), 1, 6, 6, 150)
         ]
 
-        assert same_list_tuple(result, expected_results)
+        assert result == expected_results
         assert self.partitionned_table_exists('requests_calls_y2017m01')

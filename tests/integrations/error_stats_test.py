@@ -1,5 +1,4 @@
 from tests.integrations.mechanism import Mechanism
-from tests.checker import same_list_tuple
 from datetime import datetime
 
 
@@ -23,5 +22,5 @@ class TestAnalyzeErrorStats(Mechanism):
             ('fr-idf', 'v1.some_api', 42, 'my_app', 0, datetime(2013, 11, 16, 0, 0), 'some_error_id', 1),
         ]
 
-        assert same_list_tuple(result, expected_results)
+        assert result == expected_results
         assert self.partitionned_table_exists('error_stats_y2017m01')

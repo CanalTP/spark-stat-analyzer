@@ -1,5 +1,4 @@
 from tests.integrations.mechanism import Mechanism
-from tests.checker import same_list_tuple
 from datetime import datetime
 
 
@@ -18,5 +17,5 @@ class TestAnalyzeTokenStats(Mechanism):
             ('token:1', datetime(2017, 1, 16, 0, 0), 2),
         ]
 
-        assert same_list_tuple(result, expected_results)
+        assert result == expected_results
         assert self.partitionned_table_exists('token_stats_y2017m01')

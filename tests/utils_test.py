@@ -6,8 +6,6 @@ from analyzers import AnalyzeTokens, AnalyseUsers, AnalyzeRequest, \
     AnalyzeCoverageModes, AnalyzeErrors, AnalyzeCoverageStopAreas, AnalyzeCoverageJourneysTransfers, \
     AnalyzeCoverageJourneysRequestsParams, AnalyzeCoverageJourneys, AnalyzeCoverageNetworks, \
     AnalyzeCoverageStartEndNetworks
-from tests.checker import same_list_tuple
-
 
 dict_analyzer = {
     "token_stats": AnalyzeTokens,
@@ -68,7 +66,7 @@ def test_sub_iterable_format_tuple():
     result = sub_iterable([1, 2, 3, 4, 5], 2)
     expected_results = [(1, 2), (3, 4), (5,)]
 
-    assert same_list_tuple([v for v in result], expected_results)
+    assert [v for v in result] == expected_results
 
 
 def test_sub_iterable_format_list():
