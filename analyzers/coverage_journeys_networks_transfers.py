@@ -13,19 +13,18 @@ class AnalyzeCoverageJourneysNetworksTransfers(Analyzer):
                     network_id = section.get('network_id', '')
                     if network_id != '' and network_id not in networks_of_journey:
                         networks_of_journey.append(network_id)
-                if len(networks_of_journey):
-                    result.append(
+                result.append(
+                    (
                         (
-                            (
-                                region_id(stat_dict),
-                                journey.get("nb_transfers"),
-                                len(networks_of_journey),
-                                is_internal_call(stat_dict),
-                                request_date(stat_dict)
-                            ),
-                            1
-                        )
+                            region_id(stat_dict),
+                            journey.get("nb_transfers"),
+                            len(networks_of_journey),
+                            is_internal_call(stat_dict),
+                            request_date(stat_dict)
+                        ),
+                        1
                     )
+                )
         return result
 
     def truncate_and_insert(self, data):
