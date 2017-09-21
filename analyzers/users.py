@@ -1,6 +1,6 @@
 from datetime import datetime
 from pyspark.sql.window import Window
-from pyspark.sql.functions import first, desc
+from pyspark.sql.functions import when, first, desc
 from analyzers import Analyzer
 
 
@@ -14,9 +14,9 @@ class AnalyseUsers(Analyzer):
 
             new_users = dataframe \
                 .select(
-                    "user_id",
-                    first('user_name').over(wdesc).alias('user_name'),
-                    first('request_date').over(wasc).alias('first_date')
+                    when(dataframe.user_id.isNull(), 0).otherwise(dataframe.user_id).alias('user_id'),
+                    when(dataframe.user_name.isNull(), 'unknown').otherwise(first(dataframe.user_name).over(wdesc)).alias('user_name'),
+                    first(dataframe.request_date).over(wasc).alias('first_date')
                 ) \
                 .distinct()
 

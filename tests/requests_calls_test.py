@@ -22,7 +22,8 @@ def test_requests_calls(spark):
     assert len(files) == len(expected_files)
     assert len(set(files) - set(expected_files)) == 0
     result = analyze_request.get_data()
-    expected_results = [(u'fr-auv', u'v1.journeys', 22, u'test filbleu', 0, u'2017-01-01', 1, 1, 0, 0),
+    expected_results = [(u'fr-cen', u'v1.status', 0, u'', 0, u'2017-01-01', 1, 1, 1, 0),
+                        (u'fr-auv', u'v1.journeys', 22, u'test filbleu', 0, u'2017-01-01', 1, 1, 0, 0),
                         (u'region:2', u'v1.pt_objects', 25, u'', 0, u'2017-01-01', 1, 2, 2, 0),
                         (u'', u'v1.coverage', 51, u'', 0, u'2017-01-01', 1, 1, 1, 0),
                         (u'region:2', u'v1.networks.collection', 25, u'', 0, u'2017-01-01', 1, 1, 1, 4),
@@ -48,7 +49,8 @@ def test_requests_calls_without_journeys(spark):
     assert len(files) == len(expected_files)
     assert len(set(files) - set(expected_files)) == 0
     result = analyze_request.get_data()
-    expected_results = [(u'region:2', u'v1.pt_objects', 25, u'', 0, u'2017-01-01', 1, 2, 2, 0),
+    expected_results = [(u'fr-cen', u'v1.status', 0, u'', 0, u'2017-01-01', 1, 1, 1, 0),
+                        (u'region:2', u'v1.pt_objects', 25, u'', 0, u'2017-01-01', 1, 2, 2, 0),
                         (u'', u'v1.coverage', 51, u'', 0, u'2017-01-01', 1, 1, 1, 0),
                         (u'region:2', u'v1.networks.collection', 25, u'', 0, u'2017-01-01', 1, 1, 1, 4),
                         (u'region:1', u'v1.stop_areas.collection', 51, u'', 0, u'2017-01-01', 1, 3, 3, 75)]

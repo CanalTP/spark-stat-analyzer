@@ -12,7 +12,7 @@ class AnalyzeRequest(Analyzer):
             when(dataframe.coverages[0].region_id.isNull(), '').
             otherwise(dataframe.coverages[0].region_id).alias('region_id'),
             dataframe.api,
-            dataframe.user_id,
+            when(dataframe.user_id.isNull(), 0).otherwise(dataframe.user_id).alias('user_id'),
             dataframe.application_name,
             when(dataframe.user_name.like('%canaltp%'), 1).otherwise(0).alias('is_internal_call'),
             from_unixtime(dataframe.request_date, 'yyyy-MM-dd').alias('request_date'),
