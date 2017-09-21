@@ -12,6 +12,7 @@ class TestAnalyzeRequestsCalls(Mechanism):
                                         'end_point_id', 'nb', 'nb_without_journey', 'object_count'])
 
         expected_results = [
+            ('fr-cen', 'v1.status', 0, '', 0, datetime(2017, 1, 1, 0, 0), 1, 2, 2, 0),
             ('fr-auv', 'v1.journeys', 22, 'test filbleu', 0, datetime(2017, 1, 1, 0, 0), 1, 1, 0, 0),
             ('region:2', 'v1.pt_objects', 25, '', 0, datetime(2017, 1, 1, 0, 0), 1, 4, 4, 0),
             ('', 'v1.coverage', 51, '', 0, datetime(2017, 1, 1, 0, 0), 1, 2, 2, 0),

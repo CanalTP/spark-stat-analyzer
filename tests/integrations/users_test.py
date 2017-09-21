@@ -10,9 +10,10 @@ class TestAnalyzeUsers(Mechanism):
         self.launch(analyzer='users', start_date='2017-01-15', end_date='2017-01-17')
         result = self.get_data(table_name='users', columns=columns)
         expected_results = [
-            (15, 'New Bobby', datetime(2017, 1, 15, 8, 12, 10)),
-            (42, 'Kenny', datetime(2017, 1, 15, 5, 56, 10)),
             (666, 'New Billy', datetime(2017, 1, 15, 8, 12, 10)),
+            (42, 'Kenny', datetime(2017, 1, 15, 5, 56, 10)),
+            (15, 'New Bobby', datetime(2017, 1, 15, 8, 12, 10)),
+            (0, 'unknown', datetime(2017, 1, 15, 8, 45, 30)),
             (45, 'Paul', datetime(2017, 1, 17, 2, 56, 10))
         ]
 
@@ -24,7 +25,8 @@ class TestAnalyzeUsers(Mechanism):
         self.launch(analyzer='users', start_date='2017-01-15', end_date='2017-01-15')
         result = self.get_data(table_name='users', columns=columns)
         expected_results = [(42, 'Kenny last name', None),
-                            (15, 'Bobby new name', datetime(2017, 1, 15, 8, 12, 10)),
-                            (666, 'Billy', datetime(2017, 1, 15, 8, 12, 10))]
+                            (666, 'Billy', datetime(2017, 1, 15, 8, 12, 10)),
+                            (0, 'unknown', datetime(2017, 1, 15, 8, 45, 30)),
+                            (15, 'Bobby new name', datetime(2017, 1, 15, 8, 12, 10))]
 
         assert result == expected_results
