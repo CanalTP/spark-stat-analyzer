@@ -25,7 +25,8 @@ def test_users(spark):
 
     expected_results = {666: {'user_name': u'Billy', 'first_date': 1484467930},
                         42: {'user_name': u'Kenny last name', 'first_date': 1484459770},
-                        15: {'user_name': u'Bobby new name', 'first_date': 1484467930}}
+                        15: {'user_name': u'Bobby new name', 'first_date': 1484467930},
+                        0: {'user_name': u'unknown', 'first_date': 1484469930}}
     assert len(results) == len(expected_results)
     formatted_results = {elt.user_id: {"user_name": elt.user_name, "first_date": elt.first_date}
                          for elt in results}
