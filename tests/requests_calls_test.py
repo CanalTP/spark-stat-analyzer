@@ -2,7 +2,6 @@ import pytest
 from datetime import date, datetime
 from analyzers import AnalyzeRequest
 import os
-from tests.checker import same_list_tuple
 
 pytestmark = pytest.mark.usefixtures("spark")
 
@@ -29,7 +28,7 @@ def test_requests_calls(spark):
                         (u'region:2', u'v1.networks.collection', 25, u'', 0, u'2017-01-01', 1, 1, 1, 4),
                         (u'region:1', u'v1.stop_areas.collection', 51, u'', 0, u'2017-01-01', 1, 3, 3, 75)]
 
-    assert same_list_tuple(result, expected_results)
+    assert result == expected_results
     assert analyze_request.get_log_analyzer_stats(datetime(2017, 2, 15, 15, 12)) == \
            "[OK] [2017-02-15 15:12:00] [2017-02-15 15:10:00] [RequestCallsUpdater] [120]"
 
@@ -54,5 +53,5 @@ def test_requests_calls_without_journeys(spark):
                         (u'', u'v1.coverage', 51, u'', 0, u'2017-01-01', 1, 1, 1, 0),
                         (u'region:2', u'v1.networks.collection', 25, u'', 0, u'2017-01-01', 1, 1, 1, 4),
                         (u'region:1', u'v1.stop_areas.collection', 51, u'', 0, u'2017-01-01', 1, 3, 3, 75)]
-    assert same_list_tuple(result, expected_results)
+    assert result == expected_results
 

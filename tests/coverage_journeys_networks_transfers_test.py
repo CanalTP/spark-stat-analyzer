@@ -1,8 +1,6 @@
 import pytest
 import os
-from datetime import date, datetime
 from analyzers import AnalyzeCoverageJourneysNetworksTransfers
-from tests.checker import same_list_tuple
 
 pytestmark = pytest.mark.usefixtures("spark")
 path = os.getcwd() + "/tests/fixtures/coverage_journeys_transfers"

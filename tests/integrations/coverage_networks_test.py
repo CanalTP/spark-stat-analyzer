@@ -1,5 +1,4 @@
 from tests.integrations.mechanism import Mechanism
-from tests.checker import same_list_tuple
 from datetime import datetime
 
 
@@ -18,5 +17,5 @@ class TestAnalyzeCoverageNetworks(Mechanism):
             ('auv', 'network:CD64', 'one network with different name', 1, datetime(2017, 1, 15, 0, 0), 1)
         ]
 
-        assert same_list_tuple(result, expected_results)
+        assert result == expected_results
         assert self.partitionned_table_exists('coverage_networks_y2017m01')

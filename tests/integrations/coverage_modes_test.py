@@ -1,5 +1,4 @@
 from tests.integrations.mechanism import Mechanism
-from tests.checker import same_list_tuple
 from datetime import datetime
 
 
@@ -15,5 +14,5 @@ class TestAnalyzeCoverageModes(Mechanism):
             ('auv', 'public_transport', '', 'commercial_mode:RER', 'RER', 1, datetime(2017, 1, 15, 0, 0), 2)
         ]
 
-        assert same_list_tuple(result, expected_results)
+        assert result == expected_results
         assert self.partitionned_table_exists('coverage_modes_y2017m01')

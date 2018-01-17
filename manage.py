@@ -37,13 +37,13 @@ if __name__ == "__main__":
         try:
             analyzer.launch()
         except Exception as e:
-            logger.get_spark_logger(sc).error("Error: {msg}".format(msg=str(e)))
+            logger.get_spark_logger(sc).error("Error({type}): {msg}".format(type=type(e), msg=str(e)))
             status = 'KO'
             exit_code = os.EX_SOFTWARE
         finally:
             analyzer.terminate(datetime.now(), status)
     except Exception as e:
-        logger.get_spark_logger(sc).error("Error: {msg}".format(msg=str(e)))
+        logger.get_spark_logger(sc).error("Error({type}): {msg}".format(type=type(e), msg=str(e)))
         exit_code =  os.EX_CONFIG
 
     sys.exit(exit_code)
