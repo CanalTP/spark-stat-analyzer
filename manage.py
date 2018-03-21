@@ -1,10 +1,14 @@
-from includes.database import Database
-import sys, os
-import config
 import argparse
-from pyspark.sql import SparkSession
-from includes import utils, logger
+import os
+import sys
 from datetime import datetime
+
+from pyspark.sql import SparkSession
+
+import config
+from includes import utils, logger
+from includes.database import Database
+from includes.exceptions import NoFilesFoundException
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process some integers.')
@@ -36,6 +40,8 @@ if __name__ == "__main__":
         analyzer = args.analyzer(args.input, args.start_date, args.end_date, spark_session, database)
         try:
             analyzer.launch()
+        except NoFilesFoundException as e:
+            logger.get_spark_logger(sc).warn("Warning: no files found to analyze")
         except Exception as e:
             logger.get_spark_logger(sc).error("Error({type}): {msg}".format(type=type(e), msg=str(e)))
             status = 'KO'
@@ -44,6 +50,6 @@ if __name__ == "__main__":
             analyzer.terminate(datetime.now(), status)
     except Exception as e:
         logger.get_spark_logger(sc).error("Error({type}): {msg}".format(type=type(e), msg=str(e)))
-        exit_code =  os.EX_CONFIG
+        exit_code = os.EX_CONFIG
 
     sys.exit(exit_code)
