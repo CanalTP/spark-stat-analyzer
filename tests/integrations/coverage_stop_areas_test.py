@@ -1,5 +1,4 @@
 from tests.integrations.mechanism import Mechanism
-from tests.checker import same_list_tuple
 from datetime import datetime
 
 
@@ -27,5 +26,5 @@ class TestAnalyzeCoverageStopAreas(Mechanism):
             (datetime(2017, 1, 18, 0, 0), 'auv', 'sa_3', 'stop 3', '', '', '', '', 1, 2)
         ]
 
-        assert same_list_tuple(result, expected_results)
+        assert result == expected_results
         assert self.partitionned_table_exists('coverage_stop_areas_y2017m01')

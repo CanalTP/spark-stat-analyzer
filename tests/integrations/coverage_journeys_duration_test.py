@@ -1,5 +1,4 @@
 from tests.integrations.mechanism import Mechanism
-from tests.checker import same_list_tuple
 from datetime import datetime
 
 
@@ -17,5 +16,5 @@ class TestAnalyzeCoverageJourneysDuration(Mechanism):
             (datetime(2017, 3, 14, 0, 0), 'fr-foo', 0, 1, 2)
         ]
 
-        assert same_list_tuple(result, expected_results)
+        assert result == expected_results
         assert self.partitionned_table_exists('coverage_journeys_duration_y2017m03')

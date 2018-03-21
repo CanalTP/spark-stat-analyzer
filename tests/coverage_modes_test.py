@@ -2,7 +2,6 @@ import pytest
 import os
 from datetime import date, datetime
 from analyzers import AnalyzeCoverageModes
-from tests.checker import same_list_tuple
 
 pytestmark = pytest.mark.usefixtures("spark")
 
@@ -41,7 +40,7 @@ def test_coverage_modes_count(spark):
                                     spark_session=spark, database=None)
 
     results = analyzer.get_data(rdd_mode=True)
-    assert same_list_tuple([v for v in results], expected_results)
+    assert [v for v in results] == expected_results
 
 
 def test_coverage_modes_without_journey(spark):

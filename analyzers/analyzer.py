@@ -1,11 +1,14 @@
-from abc import abstractmethod, ABCMeta
-from operator import add
-from glob import glob
-from datetime import timedelta, datetime
-import math
-from includes.logger import get_basic_logger
 import json
+import math
 import os
+from abc import abstractmethod, ABCMeta
+from datetime import timedelta, datetime
+from glob import glob
+from operator import add
+
+from includes.exceptions import NoFilesFoundException
+from includes.logger import get_basic_logger
+
 
 class Analyzer(object):
     __metaclass__ = ABCMeta
@@ -45,6 +48,8 @@ class Analyzer(object):
 
     def get_data(self, rdd_mode=False, separator=','):
         files = self.get_files_to_analyze()
+        if not files:
+            raise NoFilesFoundException()
         df = self.load_data(files, rdd_mode, separator)
         return self.collect_data(df)
 
@@ -53,7 +58,7 @@ class Analyzer(object):
         file_list = []
         while treatment_day <= self.end_date:
             file_path = glob(os.path.join(self.storage_path, treatment_day.strftime('%Y/%m/%d'), "*.json.log*"))
-            if self.storage_path .startswith("/") and len(file_path) > 0:
+            if self.storage_path.startswith("/") and len(file_path) > 0:
                 file_list.extend(file_path)
             treatment_day += timedelta(days=1)
         return file_list
@@ -68,10 +73,10 @@ class Analyzer(object):
             return self.spark_session.read.json(files)
 
     def get_log_analyzer_stats(self, current_datetime, status='OK'):
-        return "[%s] [%s] [%s] [%s] [%d]" %(status, current_datetime.strftime("%Y-%m-%d %H:%M:%S"),
-                                            self.created_at.strftime("%Y-%m-%d %H:%M:%S"),
-                                            self.analyzer_name,
-                                            math.floor((current_datetime - self.created_at).total_seconds()))
+        return "[%s] [%s] [%s] [%s] [%d]" % (status, current_datetime.strftime("%Y-%m-%d %H:%M:%S"),
+                                             self.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+                                             self.analyzer_name,
+                                             math.floor((current_datetime - self.created_at).total_seconds()))
 
     def terminate(self, current_datetime, status='OK'):
         self.spark_session.sparkContext.stop()
