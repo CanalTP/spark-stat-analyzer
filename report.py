@@ -43,8 +43,8 @@ for table in new_tables:
     cursor.execute(query)
     all_dates = [value[0] for value in cursor.fetchall()]
     cursor_date = min(all_dates)
-    today = datetime.now().date()
-    while cursor_date < today:
+    yesterday = datetime.now().date() - timedelta(days=1)
+    while cursor_date < yesterday:
         cursor_date = cursor_date + timedelta(days=1)
         if cursor_date not in all_dates:
             all_tables_dates_not_done[table].append(cursor_date.isoformat())
