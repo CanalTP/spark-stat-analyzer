@@ -32,6 +32,8 @@ connection = psycopg2.connect(connection_string)
 cursor = connection.cursor()
 
 all_tables_dates_not_done = {}
+at_least_on_error = False
+exclude_dates = os.getenv('EXCLUDED_DATES_REPORT', '2018-06-13').split(',')
 for table in new_tables:
     all_tables_dates_not_done[table] = []
     query = """
@@ -46,9 +48,10 @@ for table in new_tables:
     yesterday = datetime.now().date() - timedelta(days=1)
     while cursor_date < yesterday:
         cursor_date = cursor_date + timedelta(days=1)
-        if cursor_date not in all_dates:
+        if cursor_date not in all_dates and cursor_date.isoformat() not in exclude_dates:
             all_tables_dates_not_done[table].append(cursor_date.isoformat())
-if not all_tables_dates_not_done:
+            at_least_on_error = True
+if not at_least_on_error:
     exit(0)
 else:
     print(json.dumps(all_tables_dates_not_done))
