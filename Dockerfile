@@ -1,4 +1,4 @@
-FROM gettyimages/spark:2.1.0-hadoop-2.7
+FROM gettyimages/spark:2.4.1-hadoop-3.0
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -23,7 +23,7 @@ RUN set -xe && \
 
 RUN cp config.py.docker config.py && rm config.py.dist && rm config.py.docker
 RUN zip -r spark-stat-analyzer.zip analyzers includes
-RUN cp /usr/spark-2.1.0/conf/log4j.properties.template /usr/spark-2.1.0/conf/log4j.properties
-RUN sed -i 's/INFO, console/WARN, console/g' /usr/spark-2.1.0/conf/log4j.properties
+RUN cp /usr/spark-2.4.1/conf/log4j.properties.template /usr/spark-2.4.1/conf/log4j.properties
+RUN sed -i 's/INFO, console/WARN, console/g' /usr/spark-2.4.1/conf/log4j.properties
 
 CMD ["bash"]
