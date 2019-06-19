@@ -10,6 +10,10 @@ from includes.exceptions import NoFilesFoundException
 from includes.logger import get_basic_logger
 
 
+def tuple_remove_null(tuple_value):
+    return tuple(t_elt.replace('\0', '') if isinstance(t_elt, str) else t_elt for t_elt in tuple_value)
+
+
 class Analyzer(object):
     __metaclass__ = ABCMeta
 
@@ -44,7 +48,7 @@ class Analyzer(object):
         ).reduceByKey(
             self.get_logic_to_reduce_by_key
         ).collect()
-        return [tuple(list(key_tuple) + [nb]) for (key_tuple, nb) in data]
+        return [tuple(list(tuple_remove_null(key_tuple)) + [nb]) for (key_tuple, nb) in data]
 
     def get_data(self, rdd_mode=False, separator=','):
         files = self.get_files_to_analyze()
