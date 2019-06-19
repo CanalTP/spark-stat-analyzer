@@ -18,7 +18,7 @@ class Mechanism(object):
     def call(cls, cmd):
         p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         (stdout, stderr) = p.communicate(timeout=15*60)
-        if stderr:
+        if p.returncode != 0:
             raise Exception(str(stderr))
 
     @classmethod
