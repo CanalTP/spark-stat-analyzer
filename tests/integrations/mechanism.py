@@ -41,8 +41,8 @@ class Mechanism(object):
         return bool(database.cursor.rowcount)
 
     @classmethod
-    def get_data(self, table_name, columns):
-        return database.select_from_table(table_name=table_name, columns=columns)
+    def get_data(self, table_name, columns, start_date=None, end_date=None):
+        return database.select_from_table(table_name=table_name, columns=columns, start_date=start_date, end_date=end_date)
 
     @staticmethod
     def _format_input(analyzer):
