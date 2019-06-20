@@ -36,11 +36,22 @@ class Database(object):
                                                                                      end_date=end_date,
                                                                                      schema_=self.schema)
 
-    def select_from_table(self, table_name, columns, **where):
+    def select_from_table(self, table_name, columns, start_date=None, end_date=None):
         self.connect()
         query = "SELECT {columns} FROM {schema_}.{table_name}".format(columns=",".join(columns),
                                                                       table_name=table_name,
                                                                       schema_=self.schema)
+
+        where = []
+
+        if start_date:
+            where.append("request_date >= ('{}' :: date)".format(start_date))
+        if end_date:
+            where.append("request_date < ('{}' :: date) + interval '1 day'".format(end_date))
+
+        if where:
+            query = '{} WHERE {}'.format(query, ' AND '.join(where))
+
         self.cursor.execute(query)
         return [tuple(values) for values in self.cursor.fetchall()]
 

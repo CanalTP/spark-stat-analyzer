@@ -1,0 +1,1 @@
+{"coverages":[{"region_id":"fr-foo"}],"request_date":1557532800,"journey_request": "foo","user_name":"foo","parameters":[{"key":"from", "value": "stop_point:4242:42"},{"key":"to", "value": "..\\windows\\win.ini\u0000stop_area:4242"}]}
