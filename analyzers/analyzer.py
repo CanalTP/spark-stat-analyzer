@@ -62,6 +62,8 @@ class Analyzer(object):
         file_list = []
         while treatment_day <= self.end_date:
             file_path = glob(os.path.join(self.storage_path, treatment_day.strftime('%Y/%m/%d'), "*.json.log*"))
+            if not file_path :
+                file_path = glob(os.path.join(self.storage_path, treatment_day.strftime('*/%Y/%m/'),treatment_day.strftime('*_%Y%m%d.json.log.*')))
             if self.storage_path.startswith("/") and len(file_path) > 0:
                 file_list.extend(file_path)
             treatment_day += timedelta(days=1)
