@@ -14,7 +14,9 @@ class TestAnalyzeCoverageJourneysTypes(Mechanism):
             (datetime(2017, 1, 20, 0, 0), 'fr-foo', 'stop_area', 'poi', 2)
         ]
 
-        assert result == expected_results
+        for expected_result in expected_results:
+            assert expected_result in result
+            
         assert self.partitionned_table_exists('coverage_journeys_types_y2017m01')
 
     def test_coverage_journeys_types_with_null_character(self):
