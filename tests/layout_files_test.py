@@ -19,8 +19,6 @@ def test_layout_by_date(spark):
 
     assert len(files) == len(expected_files)
     assert len(set(files) - set(expected_files)) == 0
-    for fic in expected_files:
-        assert fic in files
 
     
 
@@ -44,5 +42,3 @@ def test_layout_by_coverage(spark):
 
     assert len(files) == len(expected_files)
     assert len(set(files) - set(expected_files)) == 0
-    for fic in expected_files:
-        assert fic in files
