@@ -1,3 +1,4 @@
+"user_name": "auvergoverages": [{"region_id": "transilien"}], "request_date":1484560000, "journey_request": {"requested_date_time": 14851600
 {"user_name": "in_the_past", "coverages": [{"region_id": "fr-cen"}], "request_date":1484560000, "journey_request": {"requested_date_time": 1484060001}}
 {"user_name": "auvergne", "coverages": [{"region_id": "transilien"}], "request_date":1484560000, "journey_request": {"requested_date_time": 1484560001}}
 {"user_name": "auvergne", "coverages": [{"region_id": "transilien"}], "request_date":1484560000, "journey_request": {"requested_date_time": 1484660001}}

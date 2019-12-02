@@ -2,4 +2,5 @@
 {"coverages":[{"region_id":"fr-foo"}],"request_date":1485080062,"user_name":"foo","parameters":[{"key":"wheelchair","value":"True"}],"journeys":[]}
 {"coverages":[{"region_id":"fr-bar"}],"request_date":1485080062,"user_name":"foo","parameters":[{"key":"wheelchair","value":"True"}],"journeys":[]}
 {"coverages":[{"region_id":"fr-bar"}],"request_date":1485080062,"user_name":"foo","parameters":[{"key":"wheelchair","value":"False"}],"journeys":[]}
+erages":[{"region_id":"fr-bar"}],"request_date":1485080062,"user_nam
 {"coverages":[{"region_id":"fr-bar"}],"request_date":1485080062,"user_name":"foo","parameters":[],"journeys":[]}

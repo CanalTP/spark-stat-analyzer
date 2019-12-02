@@ -1,5 +1,6 @@
 {"coverages":[{"region_id":"fr-foo"}],"request_date":1484924800,"journey_request": "foo","user_name":"foo","parameters":[]}
 {"coverages":[{"region_id":"fr-foo"}],"request_date":1484924800,"journey_request": "foo","user_name":"foo"}
+verages":[{"region_id":"fr-foo"}],"request_date":1484924800,"journey_request": "foo","use
 {"coverages":[{"region_id":"fr-foo"}],"request_date":1484924800,"journey_request": "foo","user_name":"foo","parameters":[{"key":"from", "value": "4.86;45.7611"},{"key":"to", "value": "poi:4242"}]}
 {"coverages":[{"region_id":"fr-foo"}],"request_date":1484924800,"journey_request": "foo","user_name":"foo","parameters":[{"key":"from", "value": "stop_area:4242:42"},{"key":"to", "value": "poi:4242"}]}
 {"coverages":[{"region_id":"fr-foo"}],"request_date":1484924800,"journey_request": "foo","user_name":"foo","parameters":[{"key":"from", "value": "stop_area:4242:42"},{"key":"to", "value": "poi:4242"},{"key":"other_key", "value": "foo"}]}
