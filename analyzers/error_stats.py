@@ -1,4 +1,4 @@
-from pyspark.sql.functions import when, from_unixtime,col
+from pyspark.sql.functions import when, from_unixtime, col
 from analyzers.stat_utils import region_id, is_internal_call, request_date
 from analyzers import Analyzer
 

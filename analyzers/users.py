@@ -1,6 +1,6 @@
 from datetime import datetime
 from pyspark.sql.window import Window
-from pyspark.sql.functions import when, first, desc,col
+from pyspark.sql.functions import when, first, desc, col
 from analyzers import Analyzer
 
 

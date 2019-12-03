@@ -46,7 +46,7 @@ class Analyzer(object):
             self.get_tuples_from_stat_dict
         ).reduceByKey(
             self.get_logic_to_reduce_by_key
-        ).collect()          
+        ).collect()   
         return [tuple(list(tuple_remove_null(key_tuple)) + [nb]) for (key_tuple, nb) in data]
 
     def get_data(self, rdd_mode=False, separator=','):
