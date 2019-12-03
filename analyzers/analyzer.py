@@ -84,12 +84,7 @@ class Analyzer(object):
             )
         else:
             return self.spark_session.read.json(files)
-            #res = result.where(col('token').isNotNull())
-            #print ("---------------------------------") 
-            #res.show()
-            #print ("---------------------------------") 
-            #return res 
-            
+           
         
     def get_log_analyzer_stats(self, current_datetime, status='OK'):
         return "[%s] [%s] [%s] [%s] [%d]" % (status, current_datetime.strftime("%Y-%m-%d %H:%M:%S"),
