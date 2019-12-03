@@ -1,5 +1,5 @@
 from analyzers import Analyzer
-from pyspark.sql.functions import when, from_unixtime, lit
+from pyspark.sql.functions import when, from_unixtime, lit, col
 
 
 class AnalyzeRequest(Analyzer):
@@ -8,7 +8,7 @@ class AnalyzeRequest(Analyzer):
         if "journeys" not in dataframe.columns:
             dataframe = dataframe.withColumn("journeys", lit(None))
 
-        requests_calls = dataframe.select(
+        requests_calls = dataframe.where(col('_corrupt_record').isNull()).select(
             when(dataframe.coverages[0].region_id.isNull(), '').
             otherwise(dataframe.coverages[0].region_id).alias('region_id'),
             dataframe.api,

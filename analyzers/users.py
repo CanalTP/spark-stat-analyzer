@@ -1,6 +1,6 @@
 from datetime import datetime
 from pyspark.sql.window import Window
-from pyspark.sql.functions import when, first, desc
+from pyspark.sql.functions import when, first, desc,col
 from analyzers import Analyzer
 
 
@@ -12,7 +12,7 @@ class AnalyseUsers(Analyzer):
             wasc = partition_by_user_id.orderBy("request_date")
             wdesc = partition_by_user_id.orderBy(desc("request_date"))
 
-            new_users = dataframe \
+            new_users = dataframe.where(col('_corrupt_record').isNull()) \
                 .select(
                     when(dataframe.user_id.isNull(), 0).otherwise(dataframe.user_id).alias('user_id'),
                     when(dataframe.user_name.isNull(), 'unknown').otherwise(first(dataframe.user_name).over(wdesc)).alias('user_name'),

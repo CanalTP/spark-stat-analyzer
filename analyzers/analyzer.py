@@ -5,7 +5,6 @@ from abc import abstractmethod, ABCMeta
 from datetime import timedelta, datetime
 from glob import glob
 from operator import add
-
 from includes.exceptions import NoFilesFoundException
 from includes.logger import get_basic_logger
 
@@ -82,11 +81,16 @@ class Analyzer(object):
             return self.spark_session.sparkContext.textFile(separator.join(files)).map(
                 # json to dict
                 lambda stat: json_loads(stat)
-                
             )
         else:
             return self.spark_session.read.json(files)
-
+            #res = result.where(col('token').isNotNull())
+            #print ("---------------------------------") 
+            #res.show()
+            #print ("---------------------------------") 
+            #return res 
+            
+        
     def get_log_analyzer_stats(self, current_datetime, status='OK'):
         return "[%s] [%s] [%s] [%s] [%d]" % (status, current_datetime.strftime("%Y-%m-%d %H:%M:%S"),
                                              self.created_at.strftime("%Y-%m-%d %H:%M:%S"),
