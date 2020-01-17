@@ -47,5 +47,12 @@ def date_format(value):
 
 def sub_iterable(iterable, size, format=tuple):
     it = iter(iterable)
-    while True:
-        yield format(chain((next(it),), islice(it, size - 1)))
+    # tests have this warning: "PendingDeprecationWarning: generator 'sub_iterable' raised StopIteration"
+    # => ignore StopIteration here since we know it will happen by design
+    # for more info about handling deprecation of "StopIteration" see
+    # https://www.python.org/dev/peps/pep-0479/#making-return-triggered-stopiterations-obvious
+    try:
+        while True:
+            yield format(chain((next(it),), islice(it, size - 1)))
+    except StopIteration:
+        pass
