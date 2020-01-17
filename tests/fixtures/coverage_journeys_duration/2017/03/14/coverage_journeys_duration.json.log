@@ -1,3 +1,4 @@
+ages":[{"region_id":"fr-foo"}],"request_date":1489496455,"user_name":"foo","journeys":[{"dura
 {"coverages":[{"region_id":"fr-foo"}],"request_date":1489496455,"user_name":"foo","journeys":[{"duration": 45}]}
 {"coverages":[{"region_id":"fr-foo"}],"request_date":1489496455,"user_name":"foo","journeys":[{"duration": 60}]}
 {"coverages":[{"region_id":"fr-foo"}],"request_date":1489496455,"user_name":"foo","journeys":[{"duration": 75}]}

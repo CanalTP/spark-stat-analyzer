@@ -27,6 +27,7 @@ def test_token_stat(spark):
                         (u'token:3', date(2017, 1, 15), 6),
                         (u'token:1', date(2017, 1, 15), 2),
                         (u'token:1', date(2017, 1, 16), 2)]
+    
     assert len(results) == len(expected_results)
     assert results == expected_results
     assert analyzer.get_log_analyzer_stats(datetime(2017, 2, 15, 15, 12)) == \

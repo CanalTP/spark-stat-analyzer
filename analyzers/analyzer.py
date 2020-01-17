@@ -5,7 +5,6 @@ from abc import abstractmethod, ABCMeta
 from datetime import timedelta, datetime
 from glob import glob
 from operator import add
-
 from includes.exceptions import NoFilesFoundException
 from includes.logger import get_basic_logger
 
@@ -47,7 +46,7 @@ class Analyzer(object):
             self.get_tuples_from_stat_dict
         ).reduceByKey(
             self.get_logic_to_reduce_by_key
-        ).collect()
+        ).collect()   
         return [tuple(list(tuple_remove_null(key_tuple)) + [nb]) for (key_tuple, nb) in data]
 
     def get_data(self, rdd_mode=False, separator=','):
@@ -70,14 +69,23 @@ class Analyzer(object):
         return file_list
 
     def load_data(self, files, rdd_mode=False, separator=','):
+        def json_loads(strjson):
+            try:
+                jsonObject = json.loads(strjson)
+            except ValueError as e :
+                get_basic_logger().warning('Could not decode line from stream, ignore it : %s', strjson)
+                jsonObject = {}
+            return jsonObject
+                
         if rdd_mode:
             return self.spark_session.sparkContext.textFile(separator.join(files)).map(
                 # json to dict
-                lambda stat: json.loads(stat)
+                lambda stat: json_loads(stat)
             )
         else:
             return self.spark_session.read.json(files)
-
+           
+        
     def get_log_analyzer_stats(self, current_datetime, status='OK'):
         return "[%s] [%s] [%s] [%s] [%d]" % (status, current_datetime.strftime("%Y-%m-%d %H:%M:%S"),
                                              self.created_at.strftime("%Y-%m-%d %H:%M:%S"),

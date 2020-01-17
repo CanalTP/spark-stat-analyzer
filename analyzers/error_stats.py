@@ -1,11 +1,11 @@
-from pyspark.sql.functions import when, from_unixtime
+from pyspark.sql.functions import when, from_unixtime, col
 from analyzers.stat_utils import region_id, is_internal_call, request_date
 from analyzers import Analyzer
 
 
 class AnalyzeErrors(Analyzer):
     def collect_data(self, df):
-        return df.select(
+        return df.where(col('_corrupt_record').isNull()).select(
                 when(df['coverages'][0]['region_id'].isNull(), '').otherwise(df['coverages'][0]['region_id']).
                 alias('region_id'),
                 df['api'],

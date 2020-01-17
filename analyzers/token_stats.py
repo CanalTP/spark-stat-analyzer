@@ -1,11 +1,11 @@
-from pyspark.sql.functions import to_date
+from pyspark.sql.functions import to_date, col
 from analyzers import Analyzer
 
 
 class AnalyzeTokens(Analyzer):
     def collect_data(self, dataframe):
         if dataframe.count():
-            dfProcessed = dataframe.withColumn('request_date_ts', dataframe.request_date.cast('timestamp'))
+            dfProcessed = dataframe.where(col('_corrupt_record').isNull()).withColumn('request_date_ts', dataframe.request_date.cast('timestamp'))
             tokenStats = dfProcessed.groupBy(to_date('request_date_ts').alias('request_date_trunc'), 'token').count()
             tokenStats = tokenStats.collect()
             # tokenRow attributes can be accessed by .token, .request_date_trunc but not .count which returns count method of tuple
