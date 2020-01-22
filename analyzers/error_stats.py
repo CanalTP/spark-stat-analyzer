@@ -5,7 +5,10 @@ from analyzers import Analyzer
 
 class AnalyzeErrors(Analyzer):
     def collect_data(self, df):
-        return df.where(col('_corrupt_record').isNull()).select(
+        if "_corrupt_record"  in df.columns:
+            df = df.where(col('_corrupt_record').isNull())
+
+        return df.select(
                 when(df['coverages'][0]['region_id'].isNull(), '').otherwise(df['coverages'][0]['region_id']).
                 alias('region_id'),
                 df['api'],
@@ -18,6 +21,7 @@ class AnalyzeErrors(Analyzer):
             .groupBy('region_id', 'api', 'request_date', 'user_id', 'application_name', 'err_id', 'is_internal_call')\
             .count()\
             .collect()
+            
 
     def truncate_and_insert(self, data):
         columns = ('region_id', 'api', 'request_date', 'user_id', 'app_name', 'err_id',

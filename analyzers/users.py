@@ -11,8 +11,11 @@ class AnalyseUsers(Analyzer):
             partition_by_user_id = Window.partitionBy("user_id")
             wasc = partition_by_user_id.orderBy("request_date")
             wdesc = partition_by_user_id.orderBy(desc("request_date"))
+            
+            if "_corrupt_record"  in dataframe.columns:
+                dataframe = dataframe.where(col('_corrupt_record').isNull())
 
-            new_users = dataframe.where(col('_corrupt_record').isNull()) \
+            new_users = dataframe \
                 .select(
                     when(dataframe.user_id.isNull(), 0).otherwise(dataframe.user_id).alias('user_id'),
                     when(dataframe.user_name.isNull(), 'unknown').otherwise(first(dataframe.user_name).over(wdesc)).alias('user_name'),
