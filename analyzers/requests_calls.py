@@ -8,7 +8,10 @@ class AnalyzeRequest(Analyzer):
         if "journeys" not in dataframe.columns:
             dataframe = dataframe.withColumn("journeys", lit(None))
 
-        requests_calls = dataframe.where(col('_corrupt_record').isNull()).select(
+        if "_corrupt_record"  in dataframe.columns:
+            dataframe = dataframe.where(col('_corrupt_record').isNull())
+
+        requests_calls = dataframe.select(
             when(dataframe.coverages[0].region_id.isNull(), '').
             otherwise(dataframe.coverages[0].region_id).alias('region_id'),
             dataframe.api,
